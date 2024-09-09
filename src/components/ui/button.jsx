@@ -26,6 +26,10 @@ const buttonVariants = cva(
         icon: "h-10 w-10",
       },
     },
+    colors: {
+      'light-purple': '#c61aff', // Define your light purple color
+    },
+
     defaultVariants: {
       variant: "default",
       size: "default",

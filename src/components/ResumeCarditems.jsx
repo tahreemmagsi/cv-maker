@@ -4,7 +4,7 @@ import img1 from '../images/collection.jpg';
 
 function ResumeCarditems({ resume }) {
   return (
-    <Link to={'/dashboard/resume/' + resume.resumeID + "/edit"}>
+    <Link to={'/dashboard/resume/' + resume.documentId + "/edit"}>
       <div className='relative h-[280px] w-[280px] mt-4 border rounded-lg overflow-hidden 
         hover:scale-105 transition-all hover:shadow-md shadow-primary'>
         {/* Image to cover the full div */}
