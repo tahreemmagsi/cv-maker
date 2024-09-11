@@ -27,7 +27,7 @@ user&&GetResumesList()
         <div className='grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5'>
           <AddResume/>
           {resumeList.length>0 &&resumeList.map((resume,index)=>(
-            <ResumeCarditems resume={resume} key={index }/> 
+            <ResumeCarditems resume={resume} key={index } refreshData={GetResumesList}/> 
 
           ))}
           

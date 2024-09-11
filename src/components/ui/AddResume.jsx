@@ -23,7 +23,7 @@ function AddResume() {
   const { user } = useUser();
   const [loading, setLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
-  const Navigation=useNavigate();
+  const navigate = useNavigate();
 
   const onCreate = async () => {
     setLoading(true);
@@ -42,8 +42,10 @@ function AddResume() {
     try {
       const resp = await GlobalApi.CreateNewResume(data);
       console.log(resp);
-      // Handle success as needed
-      Navigation('/dashboard/resume/'+resp.data.data.documentId+"/edit")
+      // Navigate to the edit page with the new resume ID
+      // navigate(`/dashboard/resume/${resp.data.data.documentId}/edit`);
+      navigate(`/dashboard/resume/${resp.data.data.documentId}/new`,{ state: { data: 'new' } });
+
     } catch (error) {
       console.error('Error creating resume:', error);
       setErrorMessage('Failed to create resume. Please try again later.');

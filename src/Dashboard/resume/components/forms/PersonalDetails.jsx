@@ -1,54 +1,61 @@
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { ResumeinfoContext } from '@/context/ResumeinfoContext';
-import React, { useContext } from 'react';
-import { useParams } from 'react-router-dom';
-import { useEffect,useState } from 'react';
-import GlobalApi from './../../../../../service/GlobalApi';
-import { LoaderCircle } from 'lucide-react';
-import { toast } from 'sonner';
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { ResumeinfoContext } from "@/context/ResumeinfoContext";
+import React, { useContext, useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import GlobalApi from "./../../../../../service/GlobalApi";
+import { LoaderCircle } from "lucide-react";
+import { toast } from "sonner";
 
-function PersonalDetail({enabledNext}) {
+function PersonalDetail({ enabledNext }) {
+  const params = useParams();
+  const { resumeInfo, setResumeInfo } = useContext(ResumeinfoContext);
 
-    const params=useParams();
-    const {resumeInfo,setResumeInfo}=useContext(ResumeinfoContext)
+  const [formData, setFormData] = useState({
+    firstName: resumeInfo?.firstName || "",
+    lastName: resumeInfo?.lastName || "",
+    jobTitle: resumeInfo?.jobTitle || "",
+    address: resumeInfo?.address || "",
+    phone: resumeInfo?.phone || "",
+    email: resumeInfo?.email || "",
+  });
 
-    const [formData,setFormData]=useState();
-    const [loading,setLoading]=useState(false);
-    useEffect(()=>{
-        console.log("---",resumeInfo)
-    },[])
+  const [loading, setLoading] = useState(false);
 
-    const handleInputChange=(e)=>{
-        enabledNext(false)
-        const {name,value}=e.target;
+  const handleInputChange = (e) => {
+    enabledNext(false);
+    const { name, value } = e.target;
 
-        setFormData({
-            ...formData,
-            [name]:value
-        })
-        setResumeInfo({
-            ...resumeInfo,
-            [name]:value
-        })
-    }
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
 
-    const onSave=(e)=>{
-        e.preventDefault();
-        setLoading(true)
-        const data={
-            data:formData
-        }
-        GlobalApi.UpdateResumeDetail(params?.resumeID,data).then(resp=>{
-            console.log(resp);
-            enabledNext(true);
-            setLoading(false);
-            toast("Details updated")
-        },(error)=>{
-            setLoading(false);
-        })
-        
-    }
+    setResumeInfo((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
+
+  const onSave = (e) => {
+    e.preventDefault();
+    setLoading(true);
+    const data = {
+      data: formData,
+    };
+    GlobalApi.UpdateResumeDetail(params?.resumeID, data).then(
+      (resp) => {
+        console.log(resp);
+        enabledNext(true);
+        setLoading(false);
+        toast("Details updated");
+      },
+      (error) => {
+        setLoading(false);
+      }
+    );
+  };
+
   return (
     <div className='p-5 shadow-lg rounded-lg border-t-primary border-t-4 mt-10'>
         <h2 className='font-bold text-lg'>Personal Detail</h2>

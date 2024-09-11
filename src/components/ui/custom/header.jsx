@@ -7,6 +7,7 @@ import { UserButton, useUser } from "@clerk/clerk-react";
 // import { SiStarship } from "react-icons/si";
 // import { WiStars } from "react-icons/wi";
 
+import { FaBlackTie } from "react-icons/fa";
 
 
 
@@ -15,8 +16,8 @@ function Header() {
   const {user, isSignedIn} = useUser();
   return (
     <div className="p-3 px-5 flex justify-between shadow-md">
-      <img src="/logo.svg" width={100} height={100} />
-      {/* <WiStars className="text-8xl" /> */}
+      {/* <img src="/logo.svg" width={100} height={100} /> */}
+      <FaBlackTie className="text-5xl" />
       {/* <IoIosFlower className="text-6xl" />
       <GiFlowers className="text-6xl" /> */}
 

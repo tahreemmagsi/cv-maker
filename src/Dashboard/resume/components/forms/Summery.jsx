@@ -1,44 +1,60 @@
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
-import React from "react";
-import { FaRobot } from "react-icons/fa6";
+import React, { useState, useEffect, useContext } from "react";
 import { useParams } from "react-router-dom";
 import { LoaderCircle } from "lucide-react";
 import { toast } from "sonner";
-import { useState,useEffect } from "react";
 import GlobalApi from "./../../../../../service/GlobalApi";
 import { ResumeinfoContext } from "@/context/ResumeinfoContext";
-import { useContext } from "react";
 import { AIchatSession } from "./../../../../../service/AIModal";
-import { Brain } from "lucide-react";
+import { FaRobot } from "react-icons/fa";
 
 const prompt = "Job Title: {jobTitle}. Provide a summary for 3 experience levels (Mid Level, Senior Level, and Fresher) in plain JSON format without any markdown or additional formatting. Include fields: 'summary' and 'experience_level'.";
-function Summery({enabledNext}) {
-    const {resumeInfo,setResumeInfo}=useContext(ResumeinfoContext);
-    const [summery,setSummery]=useState();
-    const [loading,setLoading]=useState(false);
-    const params=useParams();
-    const [aiGeneratedSummeryList,setAiGenerateSummeryList]=useState();
-    useEffect(()=>{
-        summery&&setResumeInfo({
-            ...resumeInfo,
-            summery:summery
-        })
-    },[summery])
+
+function Summery({ enabledNext }) {
+    const { resumeInfo, setResumeInfo } = useContext(ResumeinfoContext);
+    const [summery, setSummery] = useState(""); // Initialize as empty
+    const [loading, setLoading] = useState(false);
+    const params = useParams();
+    const [aiGeneratedSummeryList, setAiGenerateSummeryList] = useState([]);
+
+    useEffect(() => {
+        // Sync with resumeInfo if it changes and summery is still empty
+        if (resumeInfo?.summery && summery === "") {
+            setSummery(resumeInfo.summery);
+        }
+    }, [resumeInfo, summery]);
+
+    useEffect(() => {
+        // Update context whenever summery changes
+        setResumeInfo((prevInfo) => ({
+            ...prevInfo,
+            summery: summery,
+        }));
+    }, [summery, setResumeInfo]);
 
     const GenerateSummeryFromAI = async () => {
         setLoading(true);
-        const PROMPT = prompt.replace('{jobTitle}', resumeInfo?.jobTitle);
+        const PROMPT = prompt.replace('{jobTitle}', resumeInfo?.jobTitle || "");
         console.log("Prompt sent to AI:", PROMPT);
     
         try {
             const result = await AIchatSession.sendMessage(PROMPT);
             const responseText = await result.response.text();
-    
-            console.log("Raw response from AI:", responseText);
-    
-            const parsedResponse = JSON.parse(responseText.replace(/```json|```/g, ''));
-            setAiGenerateSummeryList(parsedResponse);
+            console.log("Raw AI Response:", responseText);
+
+            // Remove code block markers and parse JSON
+            const cleanedResponse = responseText.replace(/```json|```/g, '');
+            const parsedResponse = JSON.parse(cleanedResponse);
+            console.log("Parsed AI Response:", parsedResponse);
+
+            // Since response is an array, we directly set the state
+            if (Array.isArray(parsedResponse)) {
+                setAiGenerateSummeryList(parsedResponse);
+            } else {
+                console.error("Parsed response is not an array:", parsedResponse);
+                toast.error("Unexpected response format from AI. Please try again.");
+            }
         } catch (error) {
             console.error("Error processing AI response:", error);
             toast.error("Failed to generate summary from AI. Please try again.");
@@ -46,66 +62,68 @@ function Summery({enabledNext}) {
             setLoading(false);
         }
     };
-        const onSave=(e)=>{
+
+    const onSave = (e) => {
         e.preventDefault();
-       
-        setLoading(true)
-        const data={
-            data:{
-                summery:summery
-            }
-        }
-        GlobalApi.UpdateResumeDetail(params?.resumeID,data).then(resp=>{
+        setLoading(true);
+        const data = {
+            data: { summery: summery }
+        };
+        GlobalApi.UpdateResumeDetail(params?.resumeID, data).then(resp => {
             console.log(resp);
             enabledNext(true);
             setLoading(false);
-            toast("Details updated")
-        },(error)=>{
+            toast("Details updated");
+        }, (error) => {
             setLoading(false);
-        })
-    }
+            toast.error("Failed to save details. Please try again.");
+        });
+    };
+
     return (
-    <div>
-         <div className='p-5 shadow-lg rounded-lg border-t-primary border-t-4 mt-10'>
-        <h2 className='font-bold text-lg'>Summery</h2>
-        <p>Add Summery for your job title</p>
+        <div>
+            <div className='p-5 shadow-lg rounded-lg border-t-primary border-t-4 mt-10'>
+                <h2 className='font-bold text-lg'>Summery</h2>
+                <p>Add Summery for your job title</p>
 
-        <form className='mt-7' onSubmit={onSave}>
-            <div className='flex justify-between items-end'>
-                <label>Add Summery</label>
-                <button variant="outline" onClick={()=>GenerateSummeryFromAI()} 
-                type="button" size="sm" className="border-primary text-primary flex gap-2"> 
-                <Brain className='h-4 w-4' />  Generate from AI</button>
+                <form className='mt-7' onSubmit={onSave}>
+                    <div className='flex justify-between items-end'>
+                        <label>Add Summery</label>
+                        <button
+                            variant="outline"
+                            onClick={GenerateSummeryFromAI}
+                            type="button"
+                            size="sm"
+                            className="border border-purple-700 text-purple-700 flex gap-2 items-center rounded-md transition duration-200 transform hover:bg-purple-600 hover:text-white hover:scale-105 py-2 px-4"
+                        >
+                            <FaRobot className="h-4 w-4" /> Generate from AI
+                        </button>
+                    </div>
+                    <Textarea className="mt-5" required
+                        value={summery}
+                        onChange={(e) => {
+                            setSummery(e.target.value);
+                            enabledNext(false); // Disable next button on change
+                        }}
+                    />
+                    <div className='mt-2 flex justify-end'>
+                        <Button type="submit" disabled={loading}>
+                            {loading ? <LoaderCircle className='animate-spin' /> : 'Save'}
+                        </Button>
+                    </div>
+                </form>
             </div>
-            <Textarea className="mt-5" required
-            value={summery}
-                defaultValue={summery?summery:resumeInfo?.summery}
-            onChange={(e)=>setSummery(e.target.value)}
-            />
-            <div className='mt-2 flex justify-end'>
-            <Button type="submit"
-                disabled={loading}>
-                    {loading?<LoaderCircle className='animate-spin' />:'Save'}
-                    </Button>
-            </div>
-        </form>
-        </div>
 
-        
-       {aiGeneratedSummeryList&& <div className='my-5'>
-            <h2 className='font-bold text-lg'>Suggestions</h2>
-            {aiGeneratedSummeryList?.map((item,index)=>(
-                <div key={index} 
-                onClick={()=>setSummery(item?.summary)}
-                className='p-5 shadow-lg my-4 rounded-lg cursor-pointer'>
+            {Array.isArray(aiGeneratedSummeryList) && aiGeneratedSummeryList.map((item, index) => (
+                <div key={index}
+                    onClick={() => setSummery(item?.summary)}
+                    className='p-5 shadow-lg my-4 rounded-lg cursor-pointer'>
                     <h2 className='font-bold my-1 text-primary'>Level: {item?.experience_level}</h2>
                     <p>{item?.summary}</p>
                 </div>
             ))}
-        </div>}
-
-    </div>
-  )
+        </div>
+    );
 }
 
-export default Summery
+export default Summery;

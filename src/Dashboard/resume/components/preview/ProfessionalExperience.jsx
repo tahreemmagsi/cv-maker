@@ -1,7 +1,6 @@
 import React from 'react';
 
 function ProfessionalExperience({ resumeInfo }) {
-  console.log(resumeInfo); // Debugging line
 
   return (
     <div className='my-6'>

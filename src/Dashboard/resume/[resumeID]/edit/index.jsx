@@ -4,15 +4,42 @@ import FormSection from '../../components/FormSection';
 import ResumePreview from '../../components/ResumePreview';
 import { ResumeinfoContext } from '@/context/ResumeinfoContext';
 import dummydata from '@/data/dummydata';
+import GlobalApi from './../../../../../service/GlobalApi';
+import { useLocation } from 'react-router-dom';
 
 function EditResume() {
-  const params = useParams();
-  const [resumeInfo, setResumeInfo] = useState(); // Initialize with dummy data
+  const { resumeID } = useParams();
+  const [resumeInfo, setResumeInfo] = useState();
+  const [isNewResume, setIsNewResume] = useState(false);
+  const location = useLocation(); 
+  const state = location.state || {}; 
+
+
+
+
+
+
 
   useEffect(() => {
-    // If you need to fetch data based on params, do it here
-    setResumeInfo(dummydata); // Initialize data once
-  }, []); // Add dependencies if needed
+
+    if (state.data === 'new') {
+      // setIsNewResume(true);
+      setResumeInfo(dummydata);
+    } else {
+      // console.log("resumeID", resumeID);
+      // setIsNewResume(false);
+      GetResumeInfo();
+    }
+  }, []);
+
+  const GetResumeInfo = () => {
+    GlobalApi.GetResumeById(resumeID).then(resp => {
+      console.log(resp.data.data);
+      setResumeInfo(resp.data.data);
+    }).catch(err => {
+      console.error('Failed to fetch resume info:', err);
+    });
+  };
 
   return (
     <ResumeinfoContext.Provider value={{ resumeInfo, setResumeInfo }}>
