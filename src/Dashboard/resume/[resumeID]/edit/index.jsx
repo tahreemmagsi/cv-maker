@@ -1,51 +1,52 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useLocation } from 'react-router-dom';
 import FormSection from '../../components/FormSection';
 import ResumePreview from '../../components/ResumePreview';
 import { ResumeinfoContext } from '@/context/ResumeinfoContext';
 import dummydata from '@/data/dummydata';
 import GlobalApi from './../../../../../service/GlobalApi';
-import { useLocation } from 'react-router-dom';
 
 function EditResume() {
   const { resumeID } = useParams();
   const [resumeInfo, setResumeInfo] = useState();
-  const [isNewResume, setIsNewResume] = useState(false);
+  const [templateId, setTemplateId] = useState(null);
   const location = useLocation(); 
   const state = location.state || {}; 
 
-
-
-
-
-
-
   useEffect(() => {
-
     if (state.data === 'new') {
-      // setIsNewResume(true);
+      setTemplateId(state.templateId); 
       setResumeInfo(dummydata);
     } else {
-      // console.log("resumeID", resumeID);
-      // setIsNewResume(false);
       GetResumeInfo();
     }
   }, []);
 
   const GetResumeInfo = () => {
-    GlobalApi.GetResumeById(resumeID).then(resp => {
-      console.log(resp.data.data);
-      setResumeInfo(resp.data.data);
-    }).catch(err => {
-      console.error('Failed to fetch resume info:', err);
-    });
+    GlobalApi.GetResumeById(resumeID)
+      .then(resp => {
+        const fetchedData = resp.data.data;
+        setResumeInfo(fetchedData);
+
+        // Set the templateId from the fetched resume data
+        if (fetchedData.template) {
+          setTemplateId(Number(fetchedData.template)); // Ensure templateId is a number if needed
+        } else {
+          setTemplateId(null); // Default to null or handle accordingly if template is missing
+        }
+      })
+      .catch(err => {
+        console.error('Failed to fetch resume info:', err);
+      });
   };
 
   return (
     <ResumeinfoContext.Provider value={{ resumeInfo, setResumeInfo }}>
       <div className='grid grid-cols-1 md:grid-cols-2 p-10 gap-10'>
         <FormSection />
-        <ResumePreview />
+        <div className=''>
+          <ResumePreview templateId={templateId} /> 
+        </div>
       </div>
     </ResumeinfoContext.Provider>
   );

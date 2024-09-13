@@ -25,7 +25,6 @@ function Experience() {
     const params = useParams();
     const [loading, setLoading] = useState(false);
 
-    // Ensure that resumeInfo?.Experience is a valid array before using it
     useEffect(() => {
         if (Array.isArray(resumeInfo?.experience) && resumeInfo.experience.length > 0) {
             setExperinceList(resumeInfo.experience);
@@ -60,26 +59,29 @@ function Experience() {
         });
     }, [experinceList,  setResumeInfo]);
 
-    const onSave=()=>{
-        setLoading(true)
-        const data={
-            data:{
-                experience:experinceList.map(({ id, ...rest }) => rest)
+    const onSave = () => {
+        setLoading(true);
+        const data = {
+            data: {
+                experience: experinceList.map(({ id, currentlyWorking, ...rest }) => rest)
             }
-        }
-
-         console.log(experinceList)
-
-        GlobalApi.UpdateResumeDetail(params?.resumeID,data).then(res=>{
-            console.log(res);
-            setLoading(false);
-            toast('Details updated !')
-        },(error)=>{
-            setLoading(false);
-        })
-
-    }
-    return (
+        };
+    
+        console.log('Sending data:', data);
+    
+        GlobalApi.UpdateResumeDetail(params?.resumeID, data)
+            .then(res => {
+                console.log('Response:', res);
+                setLoading(false);
+                toast('Details updated!');
+            })
+            .catch(error => {
+                setLoading(false);
+                console.error('Update failed:', error);  // Add more detailed logging
+                toast('Server Error, Please try again!');
+            });
+    };
+            return (
         <div>
         <div className='p-5 shadow-lg rounded-lg border-t-primary border-t-4 mt-10'>
         <h2 className='font-bold text-lg'>Professional Experience</h2>
@@ -133,7 +135,7 @@ function Experience() {
                            <RichTextEditor
                            index={index}
                            defaultValue={item?.workSummery}
-                           onRichTextEditorChange={(event)=>handleRichTextEditor(event,'workSummery',index)}  />
+                           onRichTextEditorChange={(event)=>handleRichTextEditor(event,'workSummery',index)}  /> 
                         </div>
                     </div>
                 </div>

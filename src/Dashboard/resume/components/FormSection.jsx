@@ -33,7 +33,7 @@ function FormSection() {
           <LayoutGrid />
           Theme
         </Button> */}
-        <ThemeColor/>
+        <ThemeColor />
         <div className="flex gap-2">
           {activeFormIndex > 1 && (
             <Button size="sm" onClick={handlePrevClick}>

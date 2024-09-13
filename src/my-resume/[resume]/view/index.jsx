@@ -6,55 +6,112 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import GlobalApi from './../../../../service/GlobalApi';
 import { RWebShare } from 'react-web-share';
-
+import html2canvas from 'html2canvas';
+import jsPDF from 'jspdf';
+import html2pdf from 'html2pdf.js';
 
 function ViewResume() {
+  const [resumeInfo, setResumeInfo] = useState(null);
+  const { resumeID } = useParams();
+  const [templateId, setTemplateId] = useState(null);
+  const [format, setFormat] = useState('pdf'); // Default format is PDF
 
-  const [resumeInfo,setResumeInfo]=useState();
-  const {resumeID}=useParams();
+  useEffect(() => {
+    GetResumeInfo();
+  }, []);
 
-  useEffect(()=>{
-      GetResumeInfo();
-  },[])
-  const GetResumeInfo=()=>{
-      GlobalApi.GetResumeById(resumeID).then(resp=>{
-          console.log(resp.data.data);
-          setResumeInfo(resp.data.data);
-      })
-  }
+  const GetResumeInfo = async () => {
+    try {
+      const resp = await GlobalApi.GetResumeById(resumeID);
+      console.log(resp.data.data);
+      setResumeInfo(resp.data.data);
 
-  const HandleDownload=()=>{
-      window.print();
-  }
+      // Ensure the templateId is a number, since it may be stored as a string
+      const templateId = Number(resp.data.data.template);
+      setTemplateId(templateId);
 
-return (
-  <ResumeinfoContext.Provider value={{resumeInfo,setResumeInfo}} >
+    } catch (error) {
+      console.error('Failed to fetch resume info:', error);
+    }
+  };
+
+  const HandleDownload = async () => {
+    const printArea = document.getElementById('print-area');
+    if (printArea) {
+      try {
+        const options = {
+          margin: [0, 0, 0, 0], // Set margins to 0 for full page coverage
+          filename: 'resume.pdf',
+          image: { type: 'jpeg', quality: 1.0 },
+          html2canvas: {
+            scale: 4, // Higher scale improves quality
+            useCORS: true, // Enables cross-origin images
+            logging: true, // Enables console logging
+          },
+          jsPDF: {
+            unit: 'pt', // Use points as the unit
+            format: 'a4', // A4 format
+            orientation: 'portrait', // Portrait orientation
+          },
+        };
+  
+        if (format === 'pdf') {
+          await html2pdf().from(printArea).set(options).save();
+        } else {
+          // Convert the element to canvas and download as image format
+          const canvas = await html2canvas(printArea, { scale: 2, useCORS: true });
+          const imgData = canvas.toDataURL(`image/${format}`);
+          const link = document.createElement('a');
+          link.href = imgData;
+          link.download = `resume.${format}`;
+          link.click();
+        }
+      } catch (error) {
+        console.error('Error generating file:', error);
+      }
+    }
+  };
+  
+  return (
+    <ResumeinfoContext.Provider value={{ resumeInfo, setResumeInfo }}>
       <div id="no-print">
-      <Header/>
-
-      <div className='my-10 mx-10 md:mx-20 lg:mx-36'>
+        <Header />
+        <div className='my-10 mx-10 md:mx-20 lg:mx-36'>
           <h2 className='text-center text-2xl font-medium'>
-              Congrats! Your Resume is ready ! </h2>
-              <p className='text-center text-gray-400'>Now you are ready to download your resume and you can share unique 
-                  resume url with your friends and family </p>
-          <div className='flex justify-center gap-6 px-44 my-10'>
-              <Button onClick={HandleDownload}>Download</Button>
-             
-              <RWebShare
-      data={{
-        text: "Hello Everyone, This is my resume please open url to see it",
-        url: import.meta.env.VITE_BASE_URL+"/my-resume/"+resumeID+"/view",
-        title: resumeInfo?.firstName+" "+resumeInfo?.lastName+" resume",
-      }}
-      onClick={() => console.log("shared successfully!")}
-    > <Button>Share</Button>
-    </RWebShare>
+            Congrats! Your Resume is ready!
+          </h2>
+          <p className='text-center text-gray-400'>
+            Now you are ready to download your resume and you can share unique
+            resume URL with your friends and family
+          </p>
+          <div className='flex flex-col justify-center items-center gap-4 md:flex-row md:gap-6 px-44 my-10'>
+            Select Format :
+            <select
+              value={format}
+              onChange={(e) => setFormat(e.target.value)}
+              className='p-2 border border-gray-300 rounded'
+            >
+              <option value="pdf">PDF</option>
+              <option value="png">PNG</option>
+              <option value="jpeg">JPEG</option>
+            </select>
+            <Button onClick={HandleDownload}>Download</Button>
+            <RWebShare
+              data={{
+                text: "Hello Everyone, This is my resume please open URL to see it",
+                url: import.meta.env.VITE_BASE_URL + "/my-resume/" + resumeID + "/view",
+                title: resumeInfo?.firstName + " " + resumeInfo?.lastName + " resume",
+              }}
+              onClick={() => console.log("Shared successfully!")}
+            >
+              <Button>Share</Button>
+            </RWebShare>
           </div>
+        </div>
       </div>
-      </div>
-      <div className='flex justify-center items-center my-10 mx-10 md:mx-20 lg:mx-36'>
-        <div id="print-area" className="max-h-[600px] max-w-[600px]">
-          <ResumePreview />
+      <div className='md:mx-20 lg:mx-36'>
+        <div id="print-area" className='max-w-3xl mx-auto'>
+          <ResumePreview templateId={templateId} />
         </div>
       </div>
     </ResumeinfoContext.Provider>

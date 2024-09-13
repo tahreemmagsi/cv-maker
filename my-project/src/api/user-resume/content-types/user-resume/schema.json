@@ -65,7 +65,7 @@
       "type": "string"
     },
     "template": {
-      "type": "string"
+      "type": "biginteger"
     }
   }
 }

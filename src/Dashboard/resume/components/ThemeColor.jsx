@@ -68,8 +68,8 @@ function ThemeColor() {
           className="flex gap-2" > <LayoutGrid/> Theme</Button>
   </PopoverTrigger>
   <PopoverContent>
-    <h2 className='mb-2 text-sm font-bold'>Select Theme Color</h2>
-    <div className='grid grid-cols-5 gap-3'>
+    <h2 className='mb-2 text-sm font-bold ml-6'>Select Theme Color</h2>
+    <div className='grid grid-cols-5 gap-3 ml-6'>
         {colors.map((item,index)=>(
             <div 
             onClick={()=>onColorSelect(item)}

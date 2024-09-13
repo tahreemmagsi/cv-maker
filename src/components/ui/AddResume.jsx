@@ -44,7 +44,9 @@ function AddResume() {
       console.log(resp);
       // Navigate to the edit page with the new resume ID
       // navigate(`/dashboard/resume/${resp.data.data.documentId}/edit`);
-      navigate(`/dashboard/resume/${resp.data.data.documentId}/new`,{ state: { data: 'new' } });
+      // navigate(`/dashboard/resume/${resp.data.data.documentId}/new`,{ state: { data: 'new' } });
+      navigate(`/dashboard/resume/${resp.data.data.documentId}/template-selection`, { state: { resumeData: data } });
+
 
     } catch (error) {
       console.error('Error creating resume:', error);
