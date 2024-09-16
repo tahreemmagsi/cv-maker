@@ -7,7 +7,7 @@ import GlobalApi from "./../../../../../service/GlobalApi";
 import { LoaderCircle } from "lucide-react";
 import { toast } from "sonner";
 
-function PersonalDetail({ enabledNext }) {
+function PersonalDetail({ enabledNext, templateId }) {  
   const params = useParams();
   const { resumeInfo, setResumeInfo } = useContext(ResumeinfoContext);
 
@@ -18,6 +18,7 @@ function PersonalDetail({ enabledNext }) {
     address: resumeInfo?.address || "",
     phone: resumeInfo?.phone || "",
     email: resumeInfo?.email || "",
+    image: resumeInfo?.image || "",  
   });
 
   const [loading, setLoading] = useState(false);
@@ -35,6 +36,25 @@ function PersonalDetail({ enabledNext }) {
       ...prev,
       [name]: value,
     }));
+  };
+
+  const handleImageUpload = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setFormData((prev) => ({
+          ...prev,
+          image: reader.result, 
+        }));
+
+        setResumeInfo((prev) => ({
+          ...prev,
+          image: reader.result,
+        }));
+      };
+      reader.readAsDataURL(file);
+    }
   };
 
   const onSave = (e) => {
@@ -96,16 +116,22 @@ function PersonalDetail({ enabledNext }) {
                     defaultValue={resumeInfo?.email}
                     onChange={handleInputChange}  />
                 </div>
+
+                {templateId >= 15 && templateId <= 24 && (  // Conditionally render the image upload button
+                  <div className="col-span-2">
+                    <input type="file" accept="image/*" onChange={handleImageUpload} />
+                    {formData.image && <img src={formData.image} alt="Preview" className="mt-2 h-24" />}  {/* Show preview */}
+                  </div>
+                )}
             </div>
             <div className='mt-3 flex justify-end'>
-                <Button type="submit"
-                disabled={loading}>
-                    {loading?<LoaderCircle className='animate-spin' />:'Save'}
-                    </Button>
+                <Button type="submit" disabled={loading}>
+                    {loading ? <LoaderCircle className='animate-spin' /> : 'Save'}
+                </Button>
             </div>
         </form>
     </div>
-  )
+  );
 }
 
-export default PersonalDetail
+export default PersonalDetail;

@@ -8,6 +8,25 @@ import temp3 from './images/template3.png';
 import temp4 from './images/template4.png';
 import temp5 from './images/template5.png';
 import temp6 from './images/template6.png';
+import temp7 from './images/template7.PNG'
+import temp8 from './images/template8.png';
+import temp9 from './images/template9.png';
+import temp10 from './images/template10.png';
+import temp11 from './images/template11.PNG';
+import temp12 from './images/template12.png';
+import temp13 from './images/template13.png';
+import temp14 from './images/template14.png';
+import temp24 from './images/template24.png';
+import temp23 from './images/template23.png';
+import temp22 from './images/template22.png';
+import temp21 from './images/template21.png';
+import temp20 from './images/template20.png';
+import temp19 from './images/template19.png';
+import temp18 from './images/template18.png';
+import temp17 from './images/template17.png';
+import temp16 from './images/template16.png';
+import temp15 from './images/template15.png';
+
 
 function TemplateSelectionPage() {
   const location = useLocation();
@@ -120,7 +139,7 @@ function TemplateSelectionPage() {
           onClick={() => handleTemplateSelect(7)}
         >
           <img
-            // src={temp3}
+            src={temp7}
             alt="Template 7"
             className="w-full h-full object-cover rounded-md"
           />
@@ -130,7 +149,7 @@ function TemplateSelectionPage() {
           onClick={() => handleTemplateSelect(8)}
         >
           <img
-            // src={temp3}
+            src={temp8}
             alt="Template 8"
             className="w-full h-full object-cover rounded-md"
           />
@@ -140,7 +159,7 @@ function TemplateSelectionPage() {
           onClick={() => handleTemplateSelect(9)}
         >
           <img
-            // src={temp3}
+            src={temp9}
             alt="Template 9"
             className="w-full h-full object-cover rounded-md"
           />
@@ -151,7 +170,7 @@ function TemplateSelectionPage() {
           onClick={() => handleTemplateSelect(10)}
         >
           <img
-            // src={temp3}
+            src={temp10}
             alt="Template 10"
             className="w-full h-full object-cover rounded-md"
           />
@@ -161,7 +180,7 @@ function TemplateSelectionPage() {
           onClick={() => handleTemplateSelect(11)}
         >
           <img
-            // src={temp3}
+            src={temp11}
             alt="Template 11"
             className="w-full h-full object-cover rounded-md"
           />
@@ -171,7 +190,7 @@ function TemplateSelectionPage() {
           onClick={() => handleTemplateSelect(12)}
         >
           <img
-            // src={temp3}
+            src={temp12}
             alt="Template 12"
             className="w-full h-full object-cover rounded-md"
           />
@@ -182,7 +201,7 @@ function TemplateSelectionPage() {
           onClick={() => handleTemplateSelect(13)}
         >
           <img
-            // src={temp3}
+            src={temp13}
             alt="Template 13"
             className="w-full h-full object-cover rounded-md"
           />
@@ -193,11 +212,115 @@ function TemplateSelectionPage() {
           onClick={() => handleTemplateSelect(14)}
         >
           <img
-            // src={temp3}
+            src={temp14}
             alt="Template 14"
             className="w-full h-full object-cover rounded-md"
           />
         </div>
+        <div
+          className=" rounded-md hover:shadow-lg transition-shadow duration-200 ease-in-out cursor-pointer w-80 h-[30rem] flex items-center justify-center"
+          onClick={() => handleTemplateSelect(15)}
+        >
+          <img
+            src={temp15}
+            alt="Template 15"
+            className="w-full h-full object-cover rounded-md"
+          />
+        </div>
+        <div
+          className=" rounded-md hover:shadow-lg transition-shadow duration-200 ease-in-out cursor-pointer w-80 h-[30rem] flex items-center justify-center"
+          onClick={() => handleTemplateSelect(16)}
+        >
+          <img
+            src={temp16}
+            alt="Template 16"
+            className="w-full h-full object-cover rounded-md"
+          />
+        </div>
+        <div
+          className=" rounded-md hover:shadow-lg transition-shadow duration-200 ease-in-out cursor-pointer w-80 h-[30rem] flex items-center justify-center"
+          onClick={() => handleTemplateSelect(17)}
+        >
+          <img
+            src={temp17}
+            alt="Template 17"
+            className="w-full h-full object-cover rounded-md"
+          />
+        </div>
+        <div
+          className=" rounded-md hover:shadow-lg transition-shadow duration-200 ease-in-out cursor-pointer w-80 h-[30rem] flex items-center justify-center"
+          onClick={() => handleTemplateSelect(18)}
+        >
+          <img
+            src={temp18}
+            alt="Template 18"
+            className="w-full h-full object-cover rounded-md"
+          />
+        </div>
+        <div
+          className=" rounded-md hover:shadow-lg transition-shadow duration-200 ease-in-out cursor-pointer w-80 h-[30rem] flex items-center justify-center"
+          onClick={() => handleTemplateSelect(19)}
+        >
+          <img
+            src={temp19}
+            alt="Template 19"
+            className="w-full h-full object-cover rounded-md"
+          />
+        </div>
+        <div
+          className=" rounded-md hover:shadow-lg transition-shadow duration-200 ease-in-out cursor-pointer w-80 h-[30rem] flex items-center justify-center"
+          onClick={() => handleTemplateSelect(20)}
+        >
+          <img
+            src={temp20}
+            alt="Template 20"
+            className="w-full h-full object-cover rounded-md"
+          />
+        </div>
+
+        <div
+          className=" rounded-md hover:shadow-lg transition-shadow duration-200 ease-in-out cursor-pointer w-80 h-[30rem] flex items-center justify-center"
+          onClick={() => handleTemplateSelect(21)}
+        >
+          <img
+            src={temp21}
+            alt="Template 21"
+            className="w-full h-full object-cover rounded-md"
+          />
+        </div>
+        <div
+          className=" rounded-md hover:shadow-lg transition-shadow duration-200 ease-in-out cursor-pointer w-80 h-[30rem] flex items-center justify-center"
+          onClick={() => handleTemplateSelect(22)}
+        >
+          <img
+            src={temp22}
+            alt="Template 22"
+            className="w-full h-full object-cover rounded-md"
+          />
+        </div>
+        <div
+          className=" rounded-md hover:shadow-lg transition-shadow duration-200 ease-in-out cursor-pointer w-80 h-[30rem] flex items-center justify-center"
+          onClick={() => handleTemplateSelect(23)}
+        >
+          <img
+            src={temp23}
+            alt="Template 23"
+            className="w-full h-full object-cover rounded-md"
+          />
+        </div>
+
+        <div
+          className=" rounded-md hover:shadow-lg transition-shadow duration-200 ease-in-out cursor-pointer w-80 h-[30rem] flex items-center justify-center"
+          onClick={() => handleTemplateSelect(24)}
+        >
+          <img
+            src={temp24}
+            alt="Template 24"
+            className="w-full h-full object-cover rounded-md"
+          />
+        </div>
+
+
 
 
       </div>

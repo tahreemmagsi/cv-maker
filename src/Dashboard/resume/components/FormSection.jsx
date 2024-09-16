@@ -9,7 +9,7 @@ import Skills from './forms/Skills';
 import { Navigate, useParams } from 'react-router-dom';
 import ThemeColor from './ThemeColor';
 
-function FormSection() {
+function FormSection({ templateId }) {  // Add templateId prop
   const [activeFormIndex, setActiveFormIndex] = useState(1);
   const [enableNext, setEnableNext] = useState(false);
   const { resumeID } = useParams();
@@ -25,14 +25,6 @@ function FormSection() {
   return (
     <div>
       <div className="flex justify-between items-center">
-        {/* <Button
-          variant="outline"
-          size="sm"
-          className="flex gap-2 border border-black"
-        >
-          <LayoutGrid />
-          Theme
-        </Button> */}
         <ThemeColor />
         <div className="flex gap-2">
           {activeFormIndex > 1 && (
@@ -52,7 +44,9 @@ function FormSection() {
         </div>
       </div>
 
-      {activeFormIndex === 1 && <PersonalDetails enabledNext={(v) => setEnableNext(v)} />}
+      {activeFormIndex === 1 && (
+        <PersonalDetails enabledNext={(v) => setEnableNext(v)} templateId={templateId} />  // Pass templateId to PersonalDetails
+      )}
       {activeFormIndex === 2 && <Summery enabledNext={(v) => setEnableNext(v)} />}
       {activeFormIndex === 3 && <Experience enabledNext={(v) => setEnableNext(v)} />}
       {activeFormIndex === 4 && <Education enabledNext={(v) => setEnableNext(v)} />}

@@ -17,11 +17,10 @@ function Header() {
   return (
     <div className="p-3 px-5 flex justify-between shadow-md">
       {/* <img src="/logo.svg" width={100} height={100} /> */}
-      <FaBlackTie className="text-5xl" />
+      {/* <FaBlackTie className="text-5xl" /> */}
       {/* <IoIosFlower className="text-6xl" />
       <GiFlowers className="text-6xl" /> */}
-
-
+      <p className="font-bold text-3xl">CV MAKER</p>
 
       {isSignedIn ? (
         <div className="flex gap-2 items-center">

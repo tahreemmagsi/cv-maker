@@ -100,15 +100,5 @@ const Footer = () => {
   );
 };
 
-const App = () => {
-  return (
-    <div className="flex flex-col min-h-screen">
-      <main className="flex-grow">
-        {/* Your main content here */}
-      </main>
-      <Footer />
-    </div>
-  );
-};
 
-export default App;
+export default Footer;
