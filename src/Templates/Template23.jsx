@@ -3,7 +3,7 @@ import { ResumeinfoContext } from '@/context/ResumeinfoContext';
 import { FaMapMarkerAlt, FaPhoneAlt, FaEnvelope } from 'react-icons/fa';
 import { AiOutlineCalendar } from 'react-icons/ai'; // Additional icon for the timeline
 
-const Template23 = () => {
+const Template23 = ({imageId}) => {
   const { resumeInfo } = useContext(ResumeinfoContext);
 
   // Handle undefined resumeInfo
@@ -32,15 +32,16 @@ const Template23 = () => {
   const sectionBgColor = '#ffffff'; // White
   const borderColor = '#dcdcdc'; // Light Gray
 
+  console.log("url123............", image);
+
   return (
-    <div className="min-h-screen bg-gray-100 p-8">
       <div className="max-w-screen-lg mx-auto bg-white shadow-2xl rounded-lg overflow-hidden flex">
         {/* Sidebar */}
         <div className="w-full md:w-1/3 bg-gradient-to-b from-gray-200 to-gray-300 p-6 flex flex-col items-center">
           <div className="w-32 h-32 rounded-full overflow-hidden border-4 border-white shadow-lg mb-6">
             <img
-              src={image}
-              alt="Profile"
+                src={`http://localhost:1337${imageId}`}
+                alt="Profile"
               className="w-full h-full object-cover"
             />
           </div>
@@ -133,7 +134,6 @@ const Template23 = () => {
           </div>
         </div>
       </div>
-    </div>
   );
 };
 

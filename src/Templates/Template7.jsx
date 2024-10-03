@@ -17,7 +17,6 @@ const Template7 = () => {
     phone,
     email,
     themeColor,
-    summary,
     experience = [],
     education = [],
     skills = [],

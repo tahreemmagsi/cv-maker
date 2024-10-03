@@ -50,7 +50,7 @@ const Template6= () => {
 
       {/* Main Content Section */}
       <div className="w-2/3 p-8">
-        {/* Experience Section */}
+        {/* Experience Section */}-
         <div className="mb-8">
           <h2 className="text-2xl font-semibold mb-4" style={{ color: accentColor }}>WORK EXPERIENCE</h2>
           {experience.length > 0 ? (

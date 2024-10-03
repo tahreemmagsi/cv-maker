@@ -29,7 +29,6 @@ const Template5 = () => {
   const textColor = '#2c3e50'; // Dark text color
 
   return (
-    <div className="min-h-screen bg-gray-100 p-8" style={{ backgroundColor: '#ecf0f1' }}>
       <div className="bg-white shadow-lg rounded-lg overflow-hidden">
         {/* Header Section */}
         <div className="flex items-center justify-between p-8 bg-gray-200" style={{ backgroundColor: mainHeadingColor }}>
@@ -112,7 +111,6 @@ const Template5 = () => {
           )}
         </div>
       </div>
-    </div>
   );
 };
 

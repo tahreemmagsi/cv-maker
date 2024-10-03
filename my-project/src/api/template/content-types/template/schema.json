@@ -4,24 +4,12 @@
   "info": {
     "singularName": "template",
     "pluralName": "templates",
-    "displayName": "Template"
+    "displayName": "Template",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
   },
   "pluginOptions": {},
-  "attributes": {
-    "name": {
-      "type": "string"
-    },
-    "layout": {
-      "type": "json"
-    },
-    "requiresimage": {
-      "type": "boolean"
-    },
-    "style": {
-      "type": "json"
-    }
-  }
+  "attributes": {}
 }

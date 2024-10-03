@@ -30,7 +30,6 @@ const Template12 = () => {
   const accentColor = '#3498db'; // Blue accent color
 
   return (
-    <div className="min-h-screen bg-gray-100 p-10 flex items-center justify-center">
       <div className="flex bg-white shadow-lg rounded-lg overflow-hidden max-w-4xl w-full">
         {/* Sidebar Section */}
         <div
@@ -132,7 +131,6 @@ const Template12 = () => {
           </div>
         </div>
       </div>
-    </div>
   );
 };
 

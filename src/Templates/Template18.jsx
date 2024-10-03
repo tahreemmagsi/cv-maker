@@ -30,7 +30,6 @@ const Template18 = () => {
   const sectionBgColor = '#ffffff'; // White
 
   return (
-    <div className="min-h-screen bg-gray-200 p-8">
       <div className="max-w-5xl mx-auto bg-white shadow-xl rounded-lg overflow-hidden">
         {/* Header Section */}
         <div className="flex items-center p-8 bg-gradient-to-r from-gray-100 to-gray-300">
@@ -140,7 +139,6 @@ const Template18 = () => {
           )}
         </div>
       </div>
-    </div>
   );
 };
 

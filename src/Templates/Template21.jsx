@@ -31,7 +31,6 @@ const Template21 = () => {
   const sectionBgColor = '#fdfdfd'; // Off-white
 
   return (
-    <div className="min-h-screen bg-gray-100 p-8">
       <div className="max-w-screen-lg mx-auto bg-white shadow-xl rounded-lg p-6">
         <div className="flex items-center">
           <div className="w-32 h-32 rounded-full overflow-hidden border-4 border-gray-300">
@@ -96,7 +95,6 @@ const Template21 = () => {
           <p className="flex items-center"><FaEnvelope className="mr-2" /> {email || 'No email provided'}</p>
         </div>
       </div>
-    </div>
   );
 };
 

@@ -2,7 +2,7 @@ import React from 'react';
 import Header from '../components/ui/custom/header';
 import Footer from '@/components/ui/custom/footer';
 import homeImg from './../images/homepage.jpg';
-import cvSample1 from './../images/template5.PNG';
+import cvSample1 from './../images/template5.png';
 import cvSample2 from './../images/template1.png';
 import { AtomIcon, Edit, Share2, CheckCircle } from 'lucide-react';
 import { useUser } from '@clerk/clerk-react';

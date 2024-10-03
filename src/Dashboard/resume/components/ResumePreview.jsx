@@ -24,72 +24,68 @@ import Template22 from '@/Templates/Template22';
 import Template23 from '@/Templates/Template23';
 import Template24 from '@/Templates/template24';
 
-function ResumePreview({ templateId }) {
+function ResumePreview({ templateId, imageId }) {
   const renderTemplate = () => {
     switch (templateId) {
       case 1:
         return <Template1 />;
       case 2:
         return <Template2 />;
-        case 3:
-          return <Template3 />;
-          case 4:
-          return <Template4 />;
-          case 5:
-            return <Template5 />;
-            case 6:
-            return <Template6 />;
-
-            case 7:
-            return <Template7 />;
-            case 8:
-              return <Template8/>;
-  
-              case 9:
-                return <Template9/>;
-                case 10:
-                  return <Template10/>;
-                  case 11:
-                  return <Template11/>;
-                  case 12:
-                  return <Template12/>;
-
-                  case 13:
-                    return <Template13/>;
-                    case 14:
-                      return <Template14/>;
-  
-                      case 15:
-                      return <Template15/>;
-                      case 16:
-                      return <Template16/>;
-                      case 17:
-                      return <Template17/>;
-                      case 18:
-                        return <Template18/>;
-                        case 19:
-                        return <Template19/>;
-                        case 20:
-                        return <Template20/>;
-                        case 21:
-                        return <Template21/>;
-                        case 22:
-                        return <Template22/>;
-                        case 23:
-                        return <Template23/>;
-                        case 24:
-                        return <Template24/>;
-
+      case 3:
+        return <Template3 />;
+      case 4:
+        return <Template4 />;
+      case 5:
+        return <Template5 />;
+      case 6:
+        return <Template6 />;
+      case 7:
+        return <Template7 />;
+      case 8:
+        return <Template8 />;
+      case 9:
+        return <Template9 />;
+      case 10:
+        return <Template10 />;
+      case 11:
+        return <Template11 />;
+      case 12:
+        return <Template12 />;
+      case 13:
+        return <Template13 />;
+      case 14:
+        return <Template14 />;
+      case 15:
+        return <Template15 />;
+      case 16:
+        return <Template16 />;
+      case 17:
+        return <Template17 />;
+      case 18:
+        return <Template18 />;
+      case 19:
+        return <Template19 />;
+      case 20:
+        return <Template20 />;
+      case 21:
+        return <Template21 />;
+      case 22:
+        return <Template22 />;
+      case 23:
+        return <Template23 imageId={imageId}/>;
+      case 24:
+        return <Template24 imageId={imageId} />; 
 
       default:
         return <div>No template selected</div>;
     }
   };
-console.log(templateId);
+
+  console.log(imageId, 'imageId in ResumePreview');
+  
   return (
-    <div className=' border rounded-lg shadow-md'>
+    <div className='border rounded-lg shadow-md'>
       {renderTemplate()}
-      
     </div>
   );
 }

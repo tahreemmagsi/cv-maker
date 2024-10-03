@@ -31,7 +31,6 @@ const Template13 = () => {
   const textColor = '#34495e'; // Main text color
 
   return (
-    <div className="min-h-screen bg-gray-200 flex items-center justify-center p-8">
       <div className="max-w-5xl w-full bg-white shadow-xl rounded-lg overflow-hidden">
         {/* Header Section */}
         <div
@@ -139,7 +138,6 @@ const Template13 = () => {
           </div>
         </div>
       </div>
-    </div>
   );
 };
 

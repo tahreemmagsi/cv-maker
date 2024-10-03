@@ -30,7 +30,6 @@ const Template19 = () => {
   const sectionBgColor = '#ecf0f1'; // Light Gray
 
   return (
-    <div className="min-h-screen bg-gray-100 p-8">
       <div className="max-w-screen-lg mx-auto bg-white shadow-lg rounded-lg overflow-hidden flex">
         {/* Left Column */}
         <div className="w-1/3 bg-gray-200 p-6">
@@ -144,7 +143,6 @@ const Template19 = () => {
           </div>
         </div>
       </div>
-    </div>
   );
 };
 

@@ -30,7 +30,6 @@ const Template17 = () => {
   const sectionBgColor = '#f9f9f9'; // Light Gray
 
   return (
-    <div className="min-h-screen bg-gray-100 p-8">
       <div className="max-w-4xl mx-auto bg-white shadow-lg rounded-lg p-10 relative">
         {/* Background Decoration */}
         <div className="absolute top-0 right-0 w-1/4 h-full bg-gradient-to-b from-transparent to-gray-200 z-0"></div>
@@ -137,7 +136,6 @@ const Template17 = () => {
           )}
         </div>
       </div>
-    </div>
   );
 };
 

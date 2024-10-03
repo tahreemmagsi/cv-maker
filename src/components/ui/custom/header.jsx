@@ -20,7 +20,7 @@ function Header() {
       {/* <FaBlackTie className="text-5xl" /> */}
       {/* <IoIosFlower className="text-6xl" />
       <GiFlowers className="text-6xl" /> */}
-      <p className="font-bold text-3xl">CV MAKER</p>
+      <p className="font-bold text-3xl">AI CV MAKER</p>
 
       {isSignedIn ? (
         <div className="flex gap-2 items-center">

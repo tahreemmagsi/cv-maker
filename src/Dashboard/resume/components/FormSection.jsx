@@ -9,7 +9,7 @@ import Skills from './forms/Skills';
 import { Navigate, useParams } from 'react-router-dom';
 import ThemeColor from './ThemeColor';
 
-function FormSection({ templateId }) {  // Add templateId prop
+function FormSection({ templateId, setImageId }) {  // Add templateId prop
   const [activeFormIndex, setActiveFormIndex] = useState(1);
   const [enableNext, setEnableNext] = useState(false);
   const { resumeID } = useParams();
@@ -45,7 +45,7 @@ function FormSection({ templateId }) {  // Add templateId prop
       </div>
 
       {activeFormIndex === 1 && (
-        <PersonalDetails enabledNext={(v) => setEnableNext(v)} templateId={templateId} />  // Pass templateId to PersonalDetails
+        <PersonalDetails enabledNext={(v) => setEnableNext(v)} templateId={templateId} setImageId={setImageId} />  
       )}
       {activeFormIndex === 2 && <Summery enabledNext={(v) => setEnableNext(v)} />}
       {activeFormIndex === 3 && <Experience enabledNext={(v) => setEnableNext(v)} />}

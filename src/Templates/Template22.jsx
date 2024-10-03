@@ -33,7 +33,6 @@ const Template22 = () => {
   const subHeadingColor = themeColor || '#e74c3c'; // Bright Red
 
   return (
-    <div className="min-h-screen bg-gray-100 p-8">
       <div className="max-w-screen-lg mx-auto bg-white shadow-xl rounded-lg p-6">
         <div className="flex flex-col items-center md:flex-row">
           <div className="w-32 h-32 rounded-full overflow-hidden border-4 border-gray-300">
@@ -140,7 +139,6 @@ const Template22 = () => {
           </Timeline>
         </div>
       </div>
-    </div>
   );
 };
 

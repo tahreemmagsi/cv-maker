@@ -13,20 +13,18 @@ const prompt = "Job Title: {jobTitle}. Provide a summary for 3 experience levels
 
 function Summery({ enabledNext }) {
     const { resumeInfo, setResumeInfo } = useContext(ResumeinfoContext);
-    const [summery, setSummery] = useState(""); // Initialize as empty
+    const [summery, setSummery] = useState(""); 
     const [loading, setLoading] = useState(false);
     const params = useParams();
     const [aiGeneratedSummeryList, setAiGenerateSummeryList] = useState([]);
 
     useEffect(() => {
-        // Sync with resumeInfo if it changes and summery is still empty
         if (resumeInfo?.summery && summery === "") {
             setSummery(resumeInfo.summery);
         }
     }, [resumeInfo, summery]);
 
     useEffect(() => {
-        // Update context whenever summery changes
         setResumeInfo((prevInfo) => ({
             ...prevInfo,
             summery: summery,
@@ -43,12 +41,10 @@ function Summery({ enabledNext }) {
             const responseText = await result.response.text();
             console.log("Raw AI Response:", responseText);
 
-            // Remove code block markers and parse JSON
             const cleanedResponse = responseText.replace(/```json|```/g, '');
             const parsedResponse = JSON.parse(cleanedResponse);
             console.log("Parsed AI Response:", parsedResponse);
 
-            // Since response is an array, we directly set the state
             if (Array.isArray(parsedResponse)) {
                 setAiGenerateSummeryList(parsedResponse);
             } else {

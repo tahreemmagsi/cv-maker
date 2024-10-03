@@ -30,7 +30,6 @@ const Template4 = () => {
   const sectionBgColor = '#f4f4f9'; // Light background for sections
 
   return (
-    <div className="min-h-screen bg-gray-100 p-8" style={{ backgroundColor: '#ecf0f1' }}>
       <div className="flex">
         {/* Sidebar */}
         <div className="w-1/3 bg-white p-6 rounded-lg shadow-lg mr-8">
@@ -129,7 +128,6 @@ const Template4 = () => {
           </div>
         </div>
       </div>
-    </div>
   );
 };
 

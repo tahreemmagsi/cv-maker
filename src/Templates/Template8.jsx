@@ -29,7 +29,6 @@ const Template8 = () => {
   const textColor = '#2c3e50'; // Dark text color
 
   return (
-    <div className="min-h-screen bg-gray-100 p-8">
       <div className="bg-white rounded-lg shadow-lg flex overflow-hidden">
         {/* Sidebar Section */}
         <div className="w-1/3 bg-gray-900 p-8 text-white">
@@ -122,7 +121,6 @@ const Template8 = () => {
           </div>
         </div>
       </div>
-    </div>
   );
 };
 

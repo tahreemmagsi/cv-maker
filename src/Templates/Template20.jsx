@@ -31,7 +31,6 @@ const Template20 = () => {
   const sectionBgColor = '#fdfdfd'; // Off-white
 
   return (
-    <div className="min-h-screen bg-gray-100 p-8">
       <div className="max-w-screen-lg mx-auto bg-white shadow-xl rounded-lg overflow-hidden flex flex-col md:flex-row">
         {/* Left Column */}
         <div className="w-full md:w-1/3 bg-gradient-to-b from-blue-100 to-blue-300 p-6 flex flex-col items-center">
@@ -132,7 +131,6 @@ const Template20 = () => {
           </div>
         </div>
       </div>
-    </div>
   );
 };
 

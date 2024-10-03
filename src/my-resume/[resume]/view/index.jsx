@@ -26,7 +26,6 @@ function ViewResume() {
       console.log(resp.data.data);
       setResumeInfo(resp.data.data);
 
-      // Ensure the templateId is a number, since it may be stored as a string
       const templateId = Number(resp.data.data.template);
       setTemplateId(templateId);
 
@@ -111,7 +110,10 @@ function ViewResume() {
       </div>
       <div className='md:mx-20 lg:mx-36'>
         <div id="print-area" className='max-w-3xl mx-auto'>
-          <ResumePreview templateId={templateId} />
+          {/* <ResumePreview templateId={templateId} imageId={`http://localhost:1337${resumeInfo?.image?.url}`} /> */}
+          <ResumePreview templateId={templateId} imageId={`${resumeInfo?.image?.url}`} />
+
+
         </div>
       </div>
     </ResumeinfoContext.Provider>

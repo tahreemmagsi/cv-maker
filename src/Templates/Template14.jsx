@@ -30,7 +30,6 @@ const Template14 = () => {
   const textColor = '#34495e';
 
   return (
-    <div className="min-h-screen bg-gray-100 flex items-center justify-center p-8">
       <div className="relative max-w-4xl w-full h-auto bg-white shadow-xl rounded-lg p-8 flex flex-col space-y-8">
         
         {/* Header Section */}
@@ -123,7 +122,6 @@ const Template14 = () => {
 
         </div>
       </div>
-    </div>
   );
 };
 

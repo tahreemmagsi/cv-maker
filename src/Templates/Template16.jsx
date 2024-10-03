@@ -30,7 +30,6 @@ const Template16 = () => {
   const sectionBgColor = '#ffffff'; // White
 
   return (
-    <div className="min-h-screen bg-gray-200 p-8">
       <div className="max-w-3xl mx-auto bg-white shadow-md rounded-lg p-8">
         {/* Header Section */}
         <div className="flex items-center mb-8 border-b border-gray-300 pb-4">
@@ -134,7 +133,6 @@ const Template16 = () => {
           )}
         </div>
       </div>
-    </div>
   );
 };
 

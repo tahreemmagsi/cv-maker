@@ -2,8 +2,9 @@ import React, { useContext } from 'react';
 import { ResumeinfoContext } from '@/context/ResumeinfoContext';
 import { FaMapMarkerAlt, FaPhoneAlt, FaEnvelope } from 'react-icons/fa';
 
-const Template24 = () => {
+const Template24 = ({imageId}) => {
   const { resumeInfo } = useContext(ResumeinfoContext);
+  console.log(imageId,'img idd');
 
   // Handle undefined resumeInfo
   if (!resumeInfo) {
@@ -32,19 +33,16 @@ const Template24 = () => {
   const textColor = '#333'; // Dark Gray
 
   return (
-    <div className="min-h-screen bg-gray-200 p-8">
       <div className="relative max-w-screen-lg mx-auto bg-white shadow-xl rounded-lg overflow-hidden">
         {/* Gradient Background */}
         <div className="absolute inset-0 bg-[linear-gradient(135deg,_#3498db,_#e74c3c)] h-full z-0"></div>
         
-        {/* Main Content */}
         <div className="relative z-10">
-          {/* Header Section with Gradient Background */}
           <div className="relative bg-gradient-to-r from-blue-500 via-red-500 to-red-500 text-white shadow-lg p-6 flex items-center justify-center flex-col md:flex-row">
             <div className="w-32 h-32 rounded-full overflow-hidden border-4 border-white shadow-md mb-6 md:mb-0 md:mr-6">
               <img
-                src={image}
-                alt="Profile"
+              src={imageId ? `http://localhost:1337${imageId}` : image}           
+              alt="Upload Profile"
                 className="w-full h-full object-cover"
               />
             </div>
@@ -151,7 +149,7 @@ const Template24 = () => {
           </div>
         </div>
       </div>
-    </div>
+    // </div>
   );
 };
 

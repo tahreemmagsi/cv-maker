@@ -30,7 +30,6 @@ const Template11 = () => {
   const textColor = '#2c3e50'; // Dark text color
 
   return (
-    <div className="min-h-screen bg-gray-200 p-8 flex flex-col items-center">
       <div className="bg-white shadow-2xl rounded-lg overflow-hidden max-w-4xl w-full">
         {/* Header Section */}
         <div className="bg-gradient-to-r from-green-400 to-teal-500 p-6 text-white">
@@ -132,7 +131,6 @@ const Template11 = () => {
           </div>
         </div>
       </div>
-    </div>
   );
 };
 

@@ -8,8 +8,10 @@ import GlobalApi from './../../../../../service/GlobalApi';
 
 function EditResume() {
   const { resumeID } = useParams();
-  const [resumeInfo, setResumeInfo] = useState();
+  const [resumeInfo, setResumeInfo] = useState({});
   const [templateId, setTemplateId] = useState(null);
+  const [imageId, setImageId] = useState(null);
+
   const location = useLocation(); 
   const state = location.state || {}; 
 
@@ -28,24 +30,34 @@ function EditResume() {
         const fetchedData = resp.data.data;
         setResumeInfo(fetchedData);
 
-        // Set the templateId from the fetched resume data
         if (fetchedData.template) {
-          setTemplateId(Number(fetchedData.template)); // Ensure templateId is a number if needed
+          setTemplateId(Number(fetchedData.template)); 
         } else {
-          setTemplateId(null); // Default to null or handle accordingly if template is missing
+          setTemplateId(null); 
         }
+
+        if (fetchedData.image && fetchedData.image.url) {
+          setImageId(fetchedData.image.url);  
+        } else {
+          setImageId(null);  
+        }
+
+        console.log(fetchedData, 'Fetched resume data');
       })
       .catch(err => {
         console.error('Failed to fetch resume info:', err);
       });
   };
 
+  console.log(templateId, 'templateId in EditResume');
+  console.log(imageId, 'imageId in EditResume'); 
+
   return (
     <ResumeinfoContext.Provider value={{ resumeInfo, setResumeInfo }}>
       <div className='grid grid-cols-1 md:grid-cols-2 p-10 gap-10'>
-        <FormSection templateId={templateId} />
-        <div className=''>
-          <ResumePreview templateId={templateId} /> 
+        <FormSection templateId={templateId} setImageId={setImageId} />
+        <div>
+        <ResumePreview templateId={templateId} imageId={imageId} />
         </div>
       </div>
     </ResumeinfoContext.Provider>

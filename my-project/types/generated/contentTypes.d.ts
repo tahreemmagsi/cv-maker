@@ -594,15 +594,12 @@ export interface ApiTemplateTemplate extends Struct.CollectionTypeSchema {
     singularName: 'template';
     pluralName: 'templates';
     displayName: 'Template';
+    description: '';
   };
   options: {
     draftAndPublish: true;
   };
   attributes: {
-    name: Schema.Attribute.String;
-    layout: Schema.Attribute.JSON;
-    requiresimage: Schema.Attribute.Boolean;
-    style: Schema.Attribute.JSON;
     createdAt: Schema.Attribute.DateTime;
     updatedAt: Schema.Attribute.DateTime;
     publishedAt: Schema.Attribute.DateTime;
@@ -642,6 +639,7 @@ export interface ApiUserResumeUserResume extends Struct.CollectionTypeSchema {
     skills: Schema.Attribute.Component<'skills.skills', true>;
     themeColor: Schema.Attribute.String;
     template: Schema.Attribute.BigInteger;
+    image: Schema.Attribute.Media<'images' | 'files'>;
     createdAt: Schema.Attribute.DateTime;
     updatedAt: Schema.Attribute.DateTime;
     publishedAt: Schema.Attribute.DateTime;
