@@ -48,7 +48,7 @@ const Template10 = () => {
                 <div key={skill.id} className="mb-3">
                   <div className="flex items-center justify-between">
                     <span>{skill.name}</span>
-                    <div className="w-1/2 bg-gray-300 rounded-full h-2 overflow-hidden">
+                    <div className="w-1/2 bg-gray-500 rounded-full h-2 overflow-hidden">
                       <div
                         className="h-2 rounded-full"
                         style={{

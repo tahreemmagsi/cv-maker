@@ -2,8 +2,10 @@ import React, { useContext } from 'react';
 import { ResumeinfoContext } from '@/context/ResumeinfoContext';
 import { FaMapMarkerAlt, FaPhoneAlt, FaEnvelope } from 'react-icons/fa'; // Import react-icons
 
-const Template20 = () => {
+const Template20 = ({imageId}) => {
   const { resumeInfo } = useContext(ResumeinfoContext);
+  const imageBaseUrl = import.meta.env.VITE_IMAGE_BASE_URL; 
+
 
   // Handle undefined resumeInfo
   if (!resumeInfo) {
@@ -36,7 +38,7 @@ const Template20 = () => {
         <div className="w-full md:w-1/3 bg-gradient-to-b from-blue-100 to-blue-300 p-6 flex flex-col items-center">
           <div className="w-32 h-32 rounded-full overflow-hidden border-4 border-white shadow-md mb-6">
             <img
-              src={image}
+              src={imageId ? `${imageBaseUrl}${imageId}` : image}           
               alt="Profile"
               className="w-full h-full object-cover"
             />

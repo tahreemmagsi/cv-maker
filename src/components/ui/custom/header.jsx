@@ -1,36 +1,53 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Button } from "../button";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { UserButton, useUser } from "@clerk/clerk-react";
-// import { GiFlowers } from "react-icons/gi";
-// import { IoIosFlower } from "react-icons/io";
-// import { SiStarship } from "react-icons/si";
-// import { WiStars } from "react-icons/wi";
-
-import { FaBlackTie } from "react-icons/fa";
-
-
-
 
 function Header() {
-  const {user, isSignedIn} = useUser();
+  const { user, isSignedIn } = useUser();
+  const location = useLocation();
+
+  // Update the activeButton based on the pathname
+  const [activeButton, setActiveButton] = useState(
+    location.pathname === "/dashboard" ? "dashboard" :
+    location.pathname === "/" ? "home" : "none"
+  );
+
+  useEffect(() => {
+    // Update active button when the location changes
+    if (location.pathname === "/dashboard") {
+      setActiveButton("dashboard");
+    } else if (location.pathname === "/") {
+      setActiveButton("home");
+    } else {
+      setActiveButton("none");
+    }
+  }, [location.pathname]);
+
+  const handleButtonClick = (button) => {
+    setActiveButton(button);
+  };
+
   return (
-    <div className="p-3 px-5 flex justify-between shadow-md">
-      {/* <img src="/logo.svg" width={100} height={100} /> */}
-      {/* <FaBlackTie className="text-5xl" /> */}
-      {/* <IoIosFlower className="text-6xl" />
-      <GiFlowers className="text-6xl" /> */}
+    <div className="p-3 px-5 flex justify-between shadow-md bg-gray-100">
       <p className="font-bold text-3xl">AI CV MAKER</p>
 
       {isSignedIn ? (
         <div className="flex gap-2 items-center">
-          <Link to ={"/dashboard"}>
-          <Button variant="outline">Dashboard</Button>
+          <Link to="/" onClick={() => handleButtonClick("home")}>
+            <Button variant={activeButton === "home" ? "" : "outline"}>
+              Home
+            </Button>
+          </Link>
+          <Link to="/dashboard" onClick={() => handleButtonClick("dashboard")}>
+            <Button variant={activeButton === "dashboard" ? "" : "outline"}>
+              Dashboard
+            </Button>
           </Link>
           <UserButton />
         </div>
       ) : (
-        <Link to={"/auth/sign-in"}>
+        <Link to="/auth/sign-in">
           <Button>Get Started</Button>
         </Link>
       )}

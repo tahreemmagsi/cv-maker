@@ -2,8 +2,10 @@ import React, { useContext } from 'react';
 import { ResumeinfoContext } from '@/context/ResumeinfoContext';
 import { FaMapMarkerAlt, FaPhoneAlt, FaEnvelope } from 'react-icons/fa';
 
-const Template21 = () => {
+const Template21 = ({imageId}) => {
   const { resumeInfo } = useContext(ResumeinfoContext);
+  const imageBaseUrl = import.meta.env.VITE_IMAGE_BASE_URL; 
+
 
   // Handle undefined resumeInfo
   if (!resumeInfo) {
@@ -28,13 +30,14 @@ const Template21 = () => {
   // Define colors
   const mainHeadingColor = themeColor || '#2980b9'; // Bright Blue
   const subHeadingColor = themeColor || '#e74c3c'; // Bright Red
-  const sectionBgColor = '#fdfdfd'; // Off-white
 
   return (
       <div className="max-w-screen-lg mx-auto bg-white shadow-xl rounded-lg p-6">
         <div className="flex items-center">
           <div className="w-32 h-32 rounded-full overflow-hidden border-4 border-gray-300">
-            <img src={image} alt="Profile" className="w-full h-full object-cover" />
+            <img 
+              src={imageId ? `${imageBaseUrl}${imageId}` : image}           
+              alt="Profile" className="w-full h-full object-cover" />
           </div>
           <div className="ml-6">
             <h1 className="text-3xl font-bold">{`${firstName || ''} ${lastName || ''}`}</h1>

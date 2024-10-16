@@ -4,6 +4,8 @@ import { FaMapMarkerAlt, FaPhoneAlt, FaEnvelope } from 'react-icons/fa';
 
 const Template24 = ({imageId}) => {
   const { resumeInfo } = useContext(ResumeinfoContext);
+  const imageBaseUrl = import.meta.env.VITE_IMAGE_BASE_URL; 
+
   console.log(imageId,'img idd');
 
   // Handle undefined resumeInfo
@@ -41,7 +43,7 @@ const Template24 = ({imageId}) => {
           <div className="relative bg-gradient-to-r from-blue-500 via-red-500 to-red-500 text-white shadow-lg p-6 flex items-center justify-center flex-col md:flex-row">
             <div className="w-32 h-32 rounded-full overflow-hidden border-4 border-white shadow-md mb-6 md:mb-0 md:mr-6">
               <img
-              src={imageId ? `http://localhost:1337${imageId}` : image}           
+              src={imageId ? `${imageBaseUrl}${imageId}` : image}           
               alt="Upload Profile"
                 className="w-full h-full object-cover"
               />

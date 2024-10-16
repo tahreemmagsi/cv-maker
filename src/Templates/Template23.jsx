@@ -1,10 +1,12 @@
 import React, { useContext } from 'react';
 import { ResumeinfoContext } from '@/context/ResumeinfoContext';
 import { FaMapMarkerAlt, FaPhoneAlt, FaEnvelope } from 'react-icons/fa';
-import { AiOutlineCalendar } from 'react-icons/ai'; // Additional icon for the timeline
+import { AiOutlineCalendar } from 'react-icons/ai'; 
 
 const Template23 = ({imageId}) => {
   const { resumeInfo } = useContext(ResumeinfoContext);
+  const imageBaseUrl = import.meta.env.VITE_IMAGE_BASE_URL; 
+
 
   // Handle undefined resumeInfo
   if (!resumeInfo) {
@@ -32,7 +34,6 @@ const Template23 = ({imageId}) => {
   const sectionBgColor = '#ffffff'; // White
   const borderColor = '#dcdcdc'; // Light Gray
 
-  console.log("url123............", image);
 
   return (
       <div className="max-w-screen-lg mx-auto bg-white shadow-2xl rounded-lg overflow-hidden flex">
@@ -40,8 +41,8 @@ const Template23 = ({imageId}) => {
         <div className="w-full md:w-1/3 bg-gradient-to-b from-gray-200 to-gray-300 p-6 flex flex-col items-center">
           <div className="w-32 h-32 rounded-full overflow-hidden border-4 border-white shadow-lg mb-6">
             <img
-                src={`http://localhost:1337${imageId}`}
-                alt="Profile"
+              src={imageId ? `${imageBaseUrl}${imageId}` : image}           
+              alt="Profile"
               className="w-full h-full object-cover"
             />
           </div>

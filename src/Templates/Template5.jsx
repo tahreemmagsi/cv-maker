@@ -17,7 +17,7 @@ const Template5 = () => {
     phone,
     email,
     themeColor,
-    summary,
+    summery,
     experience = [],
     education = [],
     skills = [],
@@ -46,7 +46,7 @@ const Template5 = () => {
         {/* Summary Section */}
         <div className="p-6 text-center" style={{ color: textColor }}>
           <h2 className="text-2xl font-semibold mb-4" style={{ color: mainHeadingColor }}>PROFESSIONAL SUMMARY</h2>
-          <p className="text-lg">{summary || 'No summary provided'}</p>
+          <p className="text-lg">{summery || 'No summary provided'}</p>
         </div>
 
         <div className="flex">

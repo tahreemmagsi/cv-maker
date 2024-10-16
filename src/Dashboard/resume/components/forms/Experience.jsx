@@ -77,7 +77,7 @@ function Experience() {
             })
             .catch(error => {
                 setLoading(false);
-                console.error('Update failed:', error);  // Add more detailed logging
+                console.error('Update failed:', error); 
                 toast('Server Error, Please try again!');
             });
     };
@@ -94,7 +94,7 @@ function Experience() {
                             <label className='text-xs'>Position Title</label>
                             <Input name="title" 
                             onChange={(event)=>handleChange(index,event)}
-                            defaultValue={item?.title}
+                            defaultValue={item?.title ? item.title : ""} 
                             />
                         </div>
                         <div>
@@ -102,6 +102,7 @@ function Experience() {
                             <Input name="companyName" 
                             onChange={(event)=>handleChange(index,event)}
                             defaultValue={item?.companyName} />
+
                         </div>
                         <div>
                             <label className='text-xs'>City</label>

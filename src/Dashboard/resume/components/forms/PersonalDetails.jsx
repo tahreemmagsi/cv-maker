@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import { useContext, useState, useEffect, useRef } from "react";
 import { useParams } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -7,36 +7,53 @@ import GlobalApi from "./../../../../../service/GlobalApi";
 import { LoaderCircle } from "lucide-react";
 import { toast } from "sonner";
 import axios from "axios";
-import { useRef } from "react";
-
 
 function PersonalDetail({ enabledNext, templateId, setImageId }) {
   const params = useParams();
+
   const { resumeInfo, setResumeInfo } = useContext(ResumeinfoContext);
+  
   const [formData, setFormData] = useState({
-    firstName: resumeInfo?.firstName || "",
-    lastName: resumeInfo?.lastName || "",
-    jobTitle: resumeInfo?.jobTitle || "",
-    address: resumeInfo?.address || "",
-    phone: resumeInfo?.phone || "",
-    email: resumeInfo?.email || "",
-    image: resumeInfo?.image || null,
+    firstName: "",
+    lastName: "",
+    jobTitle: "",
+    address: "",
+    phone: "",
+    email: "",
+    image: null,
   });
+  
   const [loading, setLoading] = useState(false);
   const fileInputRef = useRef(null);
 
+  useEffect(() => {
+    if (resumeInfo) {
+      setFormData({
+        firstName: resumeInfo?.firstName || "",
+        lastName: resumeInfo?.lastName || "",
+        jobTitle: resumeInfo?.jobTitle || "",
+        address: resumeInfo?.address || "",
+        phone: resumeInfo?.phone || "",
+        email: resumeInfo?.email || "",
+        image: resumeInfo?.image || null,
+      });
+    }
+  }, [resumeInfo]);
 
   const handleInputChange = (e) => {
-    enabledNext(false);
     const { name, value } = e.target;
-    setFormData((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
-    setResumeInfo((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
+
+    if (formData[name] !== value) {
+      enabledNext(false);
+      setFormData((prev) => ({
+        ...prev,
+        [name]: value,
+      }));
+      setResumeInfo((prev) => ({
+        ...prev,
+        [name]: value,
+      }));
+    }
   };
 
   const handleImageUpload = (e) => {
@@ -65,106 +82,158 @@ function PersonalDetail({ enabledNext, templateId, setImageId }) {
         "http://localhost:1337/api/upload",
         formDataForImage
       );
-      setImageId(uploadResponse.data[0].url)
-      return uploadResponse.data[0].id; 
+      setImageId(uploadResponse.data[0].url);
+      return uploadResponse.data[0].id;
     } catch (error) {
-      console.error("Image upload failed:", error.response ? error.response.data : error.message);
-      throw new Error("Image upload failed"); 
+      console.error(
+        "Image upload failed:",
+        error.response ? error.response.data : error.message
+      );
+      throw new Error("Image upload failed");
     }
   };
 
   const onSave = async (e) => {
     e.preventDefault();
     setLoading(true);
-    try {
-      let imageId;
   
-      if (formData.image && formData.image.startsWith('data:image/')) {
+    try {
+      let imageId = null;
+      console.log("Form Data:", formData);
+
+  
+      if (formData.image && !formData.image?.id) {
         const imageFile = await fetch(formData.image)
-          .then(res => res.blob())
-          .then(blob => new File([blob], "uploaded_image", { type: "image/jpeg" })); 
-        imageId = await uploadImage(imageFile); 
+          .then((res) => res.blob())
+          .then(
+            (blob) =>
+              new File([blob], "uploaded_image", { type: "image/jpeg" })
+          );
+        imageId = await uploadImage(imageFile);
+      } else if (formData.image && formData.image === "/src/images/profilepic.PNG") {
+
+        imageId = null;
+      } else {
+        imageId = null; 
       }
   
       const data = {
         data: {
-          ...formData,
-          image: imageId || formData.image, 
+          firstName: formData.firstName,
+          lastName: formData.lastName,
+          jobTitle: formData.jobTitle,
+          address: formData.address,
+          phone: formData.phone,
+          email: formData.email,
+          ...(imageId && {image: imageId})
         },
       };
-  console.log("Data being sent to API:", data);
-
+  
+      console.log("Data being sent to API:", data);
+  
       const response = await GlobalApi.UpdateResumeDetail(params?.resumeID, data);
       console.log(response);
       enabledNext(true);
       toast("Details updated");
     } catch (error) {
       console.error("Error saving details:", error.message);
+      toast.error("Error saving details");
     } finally {
       setLoading(false);
     }
   };
-  
+
+    
   return (
-    <div className='p-5 shadow-lg rounded-lg border-t-primary border-t-4 mt-10'>
-      <h2 className='font-bold text-lg'>Personal Detail</h2>
+    <div className="p-5 shadow-lg rounded-lg border-t-primary border-t-4 mt-10">
+      <h2 className="font-bold text-lg">Personal Detail</h2>
       <p>Get Started with the basic information</p>
       <form onSubmit={onSave}>
-        <div className='grid grid-cols-2 mt-5 gap-3'>
+        <div className="grid grid-cols-2 mt-5 gap-3">
           <div>
-            <label className='text-sm'>First Name</label>
-            <Input name="firstName" defaultValue={resumeInfo?.firstName} required onChange={handleInputChange} />
-          </div>
-          <div>
-            <label className='text-sm'>Last Name</label>
-            <Input name="lastName" required onChange={handleInputChange} defaultValue={resumeInfo?.lastName} />
-          </div>
-          <div className='col-span-2'>
-            <label className='text-sm'>Job Title</label>
-            <Input name="jobTitle" required defaultValue={resumeInfo?.jobTitle} onChange={handleInputChange} />
-          </div>
-          <div className='col-span-2'>
-            <label className='text-sm'>Address</label>
-            <Input name="address" required defaultValue={resumeInfo?.address} onChange={handleInputChange} />
+            <label className="text-sm">First Name</label>
+            <Input
+              name="firstName"
+              value={formData?.firstName}
+              required
+              onChange={handleInputChange}
+            />
           </div>
           <div>
-            <label className='text-sm'>Phone</label>
-            <Input name="phone" required defaultValue={resumeInfo?.phone} onChange={handleInputChange} />
+            <label className="text-sm">Last Name</label>
+            <Input
+              name="lastName"
+              required
+              onChange={handleInputChange}
+              value={formData?.lastName}
+            />
+          </div>
+          <div className="col-span-2">
+            <label className="text-sm">Job Title</label>
+            <Input
+              name="jobTitle"
+              required
+              value={formData?.jobTitle}
+              onChange={handleInputChange}
+            />
+          </div>
+          <div className="col-span-2">
+            <label className="text-sm">Address</label>
+            <Input
+              name="address"
+              required
+              value={formData?.address}
+              onChange={handleInputChange}
+            />
           </div>
           <div>
-            <label className='text-sm'>Email</label>
-            <Input name="email" required defaultValue={resumeInfo?.email} onChange={handleInputChange} />
-          </div><div className="justify-between">
-          {templateId >= 15 && templateId <= 24 && (
-  <div className="col-span-2">
-    <input
-      type="file"
-      accept="image/*"
-      onChange={handleImageUpload}
-      style={{ display: 'none' }}
-      ref={fileInputRef} // Add a ref to trigger click event
-      aria-label="Upload image"
-    />
-    
-    <Button 
-      onClick={() => fileInputRef.current.click()} // Trigger file input click
-      style={{ backgroundColor: 'black', color: 'white' }} // Black button styling
-      className="px-4 py-2 mt-2"
-    >
-      Upload Image
-    </Button>
-
-    {formData.image && (
-      <img src={formData.image} alt="Preview" className="mt-2 h-24" />
-    )}
-  </div>
-)}
-        </div>
-        <div className='mt-3 flex justify-end'>
-          <Button type="submit" disabled={loading}>
-            {loading ? <LoaderCircle className='animate-spin' /> : 'Save'}
-          </Button>
-        </div>
+            <label className="text-sm">Phone</label>
+            <Input
+              name="phone"
+              required
+              value={formData?.phone}
+              onChange={handleInputChange}
+            />
+          </div>
+          <div>
+            <label className="text-sm">Email</label>
+            <Input
+              name="email"
+              required
+              value={formData?.email}
+              onChange={handleInputChange}
+            />
+          </div>
+          <div className="justify-between">
+            {templateId >= 15 && templateId <= 24 && (
+              <div className="col-span-2">
+                <input
+                  type="file"
+                  accept="image/*"
+                  onChange={handleImageUpload}
+                  style={{ display: "none" }}
+                  ref={fileInputRef}
+                  aria-label="Upload image"
+                />
+                <Button
+                type="button"
+                  onClick={() => fileInputRef.current.click()}
+                  style={{ backgroundColor: "black", color: "white" }}
+                  className="px-4 py-2 mt-2"
+                >
+                  Upload Image
+                </Button>
+                {formData.image && (
+                  <img src={formData.image} alt="Preview" className="mt-2 h-24" />
+                )}
+              </div>
+            )}
+          </div>
+          <div className="mt-3 flex justify-end">
+            <Button type="submit" disabled={loading}>
+              {loading ? <LoaderCircle className="animate-spin" /> : "Save"}
+            </Button>
+          </div>
         </div>
       </form>
     </div>

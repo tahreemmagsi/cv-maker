@@ -1,8 +1,10 @@
 import React, { useContext } from 'react';
 import { ResumeinfoContext } from '@/context/ResumeinfoContext';
 
-const Template15 = () => {
+const Template15 = ({imageId}) => {
   const { resumeInfo } = useContext(ResumeinfoContext);
+  const imageBaseUrl = import.meta.env.VITE_IMAGE_BASE_URL; 
+
 
   // Handle undefined resumeInfo
   if (!resumeInfo) {
@@ -35,7 +37,7 @@ const Template15 = () => {
         <div className="flex items-center bg-gray-200 p-6 rounded-t-lg">
           <div className="flex-shrink-0">
             <img
-              src={image || 'https://via.placeholder.com/150'}
+              src={imageId ? `${imageBaseUrl}${imageId}` : image}           
               alt="Profile"
               className="w-32 h-32 rounded-full border-4 border-gray-300"
             />

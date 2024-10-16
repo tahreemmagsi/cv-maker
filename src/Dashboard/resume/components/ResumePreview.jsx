@@ -56,21 +56,21 @@ function ResumePreview({ templateId, imageId }) {
       case 14:
         return <Template14 />;
       case 15:
-        return <Template15 />;
+        return <Template15 imageId={imageId}/>;
       case 16:
-        return <Template16 />;
+        return <Template16 imageId={imageId} />;
       case 17:
-        return <Template17 />;
+        return <Template17 imageId={imageId} />;
       case 18:
-        return <Template18 />;
+        return <Template18 imageId={imageId}/>;
       case 19:
-        return <Template19 />;
+        return <Template19 imageId={imageId}/>;
       case 20:
-        return <Template20 />;
+        return <Template20  imageId={imageId}/>;
       case 21:
-        return <Template21 />;
+        return <Template21 imageId={imageId}/>;
       case 22:
-        return <Template22 />;
+        return <Template22 imageId={imageId} />;
       case 23:
         return <Template23 imageId={imageId}/>;
       case 24:

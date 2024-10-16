@@ -5,8 +5,10 @@ import { FaMapMarkerAlt, FaPhoneAlt, FaEnvelope } from 'react-icons/fa';
 
 const { Title, Text } = Typography;
 
-const Template22 = () => {
+const Template22 = ({imageId}) => {
   const { resumeInfo } = useContext(ResumeinfoContext);
+  const imageBaseUrl = import.meta.env.VITE_IMAGE_BASE_URL; 
+
 
   // Handle undefined resumeInfo
   if (!resumeInfo) {
@@ -36,7 +38,9 @@ const Template22 = () => {
       <div className="max-w-screen-lg mx-auto bg-white shadow-xl rounded-lg p-6">
         <div className="flex flex-col items-center md:flex-row">
           <div className="w-32 h-32 rounded-full overflow-hidden border-4 border-gray-300">
-            <img src={image} alt="Profile" className="w-full h-full object-cover" />
+            <img 
+              src={imageId ? `${imageBaseUrl}${imageId}` : image}           
+              alt="Profile" className="w-full h-full object-cover" />
           </div>
           <div className="ml-6 text-center md:text-left">
             <Title level={1} style={{ color: mainHeadingColor }}>

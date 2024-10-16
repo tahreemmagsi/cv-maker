@@ -68,7 +68,7 @@ function TemplateSelectionPage() {
       <h2 className="text-3xl font-extrabold mb-8 text-center bg-gradient-to-r from-blue-400 to-green-400 text-transparent bg-clip-text ">
         Select a Template
       </h2>
-      <div className="grid grid-cols-4 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4  gap-6">
         {/* Template 1 */}
         <div
           className="border  shadow-md rounded-md hover:shadow-lg transition-shadow duration-200 ease-in-out cursor-pointer w-80 h-[30rem] flex items-center justify-center"

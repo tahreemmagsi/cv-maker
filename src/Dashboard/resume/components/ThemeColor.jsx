@@ -32,7 +32,18 @@ function ThemeColor() {
         "#03A9F4", // Light Blue
         "#F48FB1", // Light Pink
         "#A5D6A7", // Light Green
-        "#B3E5FC"  // Light Cyan
+        "#B3E5FC",
+        "#000000",
+        "#D2B48C" ,
+        "#40E0D0",
+        "#B8860B",
+        "#FF1493",
+        "#C0C0C0",
+        "#999966",
+        "#990066",
+        "#009933",
+        "#ff66ff"
+ 
     ];
     
     const {resumeInfo,setResumeInfo}=useContext(ResumeinfoContext);
@@ -64,7 +75,7 @@ function ThemeColor() {
   return (
     <Popover>
   <PopoverTrigger asChild>
-  <Button variant="outline" size="sm" 
+  <Button  size="sm" 
           className="flex gap-2" > <LayoutGrid/> Theme</Button>
   </PopoverTrigger>
   <PopoverContent>

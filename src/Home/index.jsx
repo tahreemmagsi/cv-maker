@@ -15,18 +15,19 @@ function Home() {
     <>
       <Header />
       <div className="bg-black h-[40rem] w-full flex justify-center items-center relative">
-        {/* Container for the image and buttons */}
         <img src={homeImg} alt="Home" className="absolute object-cover opacity-80" />
 
-        {/* Button container to ensure buttons are centered */}
         <div className="relative z-10 flex flex-col items-center">
           {isSignedIn ? (
-            <button className="bg-black text-white px-6 py-3 rounded-lg hover:bg-blue-500 transition duration-300 ease-in-out">
+                    <Link to ={"/dashboard"}>
+
+            <button className="bg-black text-white px-6 py-3 rounded-lg hover:bg-gray-500 transition duration-300 ease-in-out">
               Create Resume
             </button>
+            </Link>
           ) : (
             <Link to="/auth/sign-in">
-              <button className="bg-black text-white px-6 py-3 rounded-lg hover:bg-blue-500 transition duration-300 ease-in-out">
+              <button className="bg-black text-white px-6 py-3 rounded-lg hover:bg-gray-500 transition duration-300 ease-in-out">
                 Get Started
               </button>
             </Link>

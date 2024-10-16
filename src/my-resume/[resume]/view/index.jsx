@@ -7,14 +7,16 @@ import { useParams } from 'react-router-dom';
 import GlobalApi from './../../../../service/GlobalApi';
 import { RWebShare } from 'react-web-share';
 import html2canvas from 'html2canvas';
-import jsPDF from 'jspdf';
 import html2pdf from 'html2pdf.js';
+import { useNavigate } from 'react-router-dom';
+import { ArrowLeft } from 'lucide-react';
 
 function ViewResume() {
   const [resumeInfo, setResumeInfo] = useState(null);
   const { resumeID } = useParams();
   const [templateId, setTemplateId] = useState(null);
-  const [format, setFormat] = useState('pdf'); // Default format is PDF
+  const [format, setFormat] = useState('pdf'); 
+  const navigate=useNavigate()
 
   useEffect(() => {
     GetResumeInfo();
@@ -75,6 +77,8 @@ function ViewResume() {
     <ResumeinfoContext.Provider value={{ resumeInfo, setResumeInfo }}>
       <div id="no-print">
         <Header />
+        <Button className="ml-10 mt-10 text-xl" onClick={() => navigate('/dashboard/resume/' + resumeInfo.documentId + "/edit")}>  <ArrowLeft />
+        Go for Edit</Button>
         <div className='my-10 mx-10 md:mx-20 lg:mx-36'>
           <h2 className='text-center text-2xl font-medium'>
             Congrats! Your Resume is ready!
@@ -90,8 +94,8 @@ function ViewResume() {
               onChange={(e) => setFormat(e.target.value)}
               className='p-2 border border-gray-300 rounded'
             >
-              <option value="pdf">PDF</option>
-              <option value="png">PNG</option>
+              <option className='p-4' value="pdf">PDF</option>
+              <option className='p-4' value="png">PNG</option>
               <option value="jpeg">JPEG</option>
             </select>
             <Button onClick={HandleDownload}>Download</Button>
