@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import  { useContext } from 'react';
 import { ResumeinfoContext } from '@/context/ResumeinfoContext';
 
 const Template15 = ({imageId}) => {
@@ -55,12 +55,19 @@ const Template15 = ({imageId}) => {
         {/* Main Content */}
         <div className="flex">
           {/* Sidebar */}
-          <div className="w-1/3 p-6">
-            <div className="bg-white p-4 rounded-lg shadow-md mb-6">
+          <div className="w-1/2 p-6">
+            <div className="bg-white p-2 rounded-lg shadow-md mb-6">
               <h3 className="text-lg font-semibold mb-2" style={{ color: mainHeadingColor }}>
                 PERSONAL INFORMATION
               </h3>
-              <p className="mb-2">{summery || 'No summary provided'}</p>
+              <p 
+                    className="mt-2" 
+                    style={{ 
+                      wordWrap: 'break-word', 
+                      wordBreak: 'break-all', 
+                      overflowWrap: 'break-word',
+                      whiteSpace: 'normal'
+                    }}>{summery || 'No summary provided'}</p>
               <ul className="list-none">
                 <li className="flex items-center mb-2">
                   <span className="font-medium text-gray-700">Phone:</span>
@@ -68,7 +75,7 @@ const Template15 = ({imageId}) => {
                 </li>
                 <li className="flex items-center mb-2">
                   <span className="font-medium text-gray-700">Email:</span>
-                  <span className="ml-2">{email || 'No email provided'}</span>
+                  <span className="ml-2 text-sm">{email || 'No email provided'}</span>
                 </li>
                 <li className="flex items-center">
                   <span className="font-medium text-gray-700">Address:</span>
@@ -118,7 +125,14 @@ const Template15 = ({imageId}) => {
                     </h4>
                     <span className="text-gray-600 block">{`${exp.companyName || 'No company name'}, ${exp.city || 'No city'}, ${exp.state || 'No state'}`}</span>
                     <span className="text-gray-600 block">{`${exp.startDate || 'No start date'} - ${exp.endDate || 'Present'}`}</span>
-                    <p className="mt-2">{exp.workSummery || 'No work summary'}</p>
+                    <p 
+                    className="mt-2" 
+                    style={{ 
+                      wordWrap: 'break-word', 
+                      wordBreak: 'break-all', 
+                      overflowWrap: 'break-word',
+                      whiteSpace: 'normal'
+                    }}>{exp.workSummery || 'No work summary'}</p>
                   </div>
                 ))
               ) : (
@@ -138,7 +152,14 @@ const Template15 = ({imageId}) => {
                       {edu.degree || 'No degree'}
                     </h4>
                     <span className="text-gray-600 block">{`${edu.universityName || 'No university'}, ${edu.startDate || 'No start date'} - ${edu.endDate || 'No end date'}`}</span>
-                    <p className="mt-2">{edu.description || 'No description'}</p>
+                    <p 
+                    className="mt-2" 
+                    style={{ 
+                      wordWrap: 'break-word', 
+                      wordBreak: 'break-all', 
+                      overflowWrap: 'break-word',
+                      whiteSpace: 'normal'
+                    }}>{edu.description || 'No description'}</p>
                   </div>
                 ))
               ) : (

@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import { useContext } from 'react';
 import { ResumeinfoContext } from '@/context/ResumeinfoContext';
 
 const Template18 = ({imageId}) => {
@@ -29,7 +29,6 @@ const Template18 = ({imageId}) => {
   // Define colors
   const mainHeadingColor = themeColor || '#2d3a4a'; // Dark Blue
   const subHeadingColor = themeColor || '#f39c12'; // Orange
-  const sectionBgColor = '#ffffff'; // White
 
   return (
       <div className="max-w-5xl mx-auto bg-white shadow-xl rounded-lg overflow-hidden">
@@ -62,7 +61,14 @@ const Template18 = ({imageId}) => {
           <h3 className="text-2xl font-semibold mb-4" style={{ color: mainHeadingColor }}>
             Summary
           </h3>
-          <p className="text-gray-700">{summery || 'No summary provided'}</p>
+          <p 
+                    className="mt-2 text-gray-700" 
+                    style={{ 
+                      wordWrap: 'break-word', 
+                      wordBreak: 'break-all', 
+                      overflowWrap: 'break-word',
+                      whiteSpace: 'normal'
+                    }}>{summery || 'No summary provided'}</p>
         </div>
 
         {/* Skills Section */}
@@ -111,7 +117,14 @@ const Template18 = ({imageId}) => {
                 <p className="text-gray-600">
                   {`${exp.startDate || 'No start date'} - ${exp.endDate || 'Present'}`}
                 </p>
-                <p className="mt-2 text-gray-700">{exp.workSummery || 'No work summary'}</p>
+                <p 
+                    className="mt-2 text-gray-700" 
+                    style={{ 
+                      wordWrap: 'break-word', 
+                      wordBreak: 'break-all', 
+                      overflowWrap: 'break-word',
+                      whiteSpace: 'normal'
+                    }}>{exp.workSummery || 'No work summary'}</p>
               </div>
             ))
           ) : (
@@ -133,7 +146,14 @@ const Template18 = ({imageId}) => {
                 <p className="text-gray-600">
                   {`${edu.universityName || 'No university'}, ${edu.startDate || 'No start date'} - ${edu.endDate || 'No end date'}`}
                 </p>
-                <p className="mt-2 text-gray-700">{edu.description || 'No description'}</p>
+                <p 
+                    className="mt-2 text-gray-700" 
+                    style={{ 
+                      wordWrap: 'break-word', 
+                      wordBreak: 'break-all', 
+                      overflowWrap: 'break-word',
+                      whiteSpace: 'normal'
+                    }}>{edu.description || 'No description'}</p>
               </div>
             ))
           ) : (

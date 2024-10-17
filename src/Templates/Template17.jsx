@@ -29,12 +29,10 @@ const Template17 = ({imageId}) => {
   // Define colors
   const mainHeadingColor = themeColor || '#5e5e5e'; // Gray
   const subHeadingColor = themeColor || '#ff6f61'; // Coral
-  const sectionBgColor = '#f9f9f9'; // Light Gray
 
   return (
       <div className="max-w-4xl mx-auto bg-white shadow-lg rounded-lg p-10 relative">
         {/* Background Decoration */}
-        <div className="absolute top-0 right-0 w-1/4 h-full bg-gradient-to-b from-transparent to-gray-200 z-0"></div>
 
         {/* Header Section */}
         <div className="flex items-center mb-8 relative z-10">
@@ -63,7 +61,14 @@ const Template17 = ({imageId}) => {
           <h3 className="text-2xl font-semibold mb-4" style={{ color: mainHeadingColor }}>
             Summary
           </h3>
-          <p className="text-gray-700">{summery || 'No summary provided'}</p>
+          <p 
+                    className="mt-2 text-gray-700" 
+                    style={{ 
+                      wordWrap: 'break-word', 
+                      wordBreak: 'break-all', 
+                      overflowWrap: 'break-word',
+                      whiteSpace: 'normal'
+                    }}>{summery || 'No summary provided'}</p>
         </div>
 
         {/* Skills Section */}
@@ -108,7 +113,14 @@ const Template17 = ({imageId}) => {
                   {`${exp.companyName || 'No company name'}, ${exp.city || 'No city'}, ${exp.state || 'No state'}`}
                 </p>
                 <p className="text-gray-600">{`${exp.startDate || 'No start date'} - ${exp.endDate || 'Present'}`}</p>
-                <p className="mt-2 text-gray-700">{exp.workSummery || 'No work summary'}</p>
+                <p 
+                    className="mt-2 text-gray-700" 
+                    style={{ 
+                      wordWrap: 'break-word', 
+                      wordBreak: 'break-all', 
+                      overflowWrap: 'break-word',
+                      whiteSpace: 'normal'
+                    }}>{exp.workSummery || 'No work summary'}</p>
               </div>
             ))
           ) : (
@@ -130,7 +142,14 @@ const Template17 = ({imageId}) => {
                 <p className="text-gray-600">
                   {`${edu.universityName || 'No university'}, ${edu.startDate || 'No start date'} - ${edu.endDate || 'No end date'}`}
                 </p>
-                <p className="mt-2 text-gray-700">{edu.description || 'No description'}</p>
+                <p 
+                    className="mt-2 text-gray-700" 
+                    style={{ 
+                      wordWrap: 'break-word', 
+                      wordBreak: 'break-all', 
+                      overflowWrap: 'break-word',
+                      whiteSpace: 'normal'
+                    }}>{edu.description || 'No description'}</p>
               </div>
             ))
           ) : (

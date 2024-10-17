@@ -2,7 +2,7 @@ import Header from '@/components/ui/custom/header';
 import { Button } from '@/components/ui/button';
 import { ResumeinfoContext } from '@/context/ResumeinfoContext';
 import ResumePreview from '@/Dashboard/resume/components/ResumePreview';
-import React, { useEffect, useState } from 'react';
+import  { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import GlobalApi from './../../../../service/GlobalApi';
 import { RWebShare } from 'react-web-share';

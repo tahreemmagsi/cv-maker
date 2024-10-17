@@ -17,7 +17,7 @@ const Template10 = () => {
     phone,
     email,
     themeColor,
-    summary,
+    summery,
     experience = [],
     education = [],
     skills = [],
@@ -67,12 +67,19 @@ const Template10 = () => {
         {/* Main Content Section */}
         <div className="w-2/3 p-8">
           {/* Summary Section */}
-          {summary && (
+          {summery && (
             <div className="mb-8">
               <h3 className="text-2xl font-semibold mb-4" style={{ color: sidebarColor }}>
                 SUMMARY
               </h3>
-              <p className="text-gray-700">{summary}</p>
+              <p 
+                    className="mt-2 text-gray-700" 
+                    style={{ 
+                      wordWrap: 'break-word', 
+                      wordBreak: 'break-all', 
+                      overflowWrap: 'break-word',
+                      whiteSpace: 'normal'
+                    }}>{summery}</p>
             </div>
           )}
 
@@ -93,7 +100,14 @@ const Template10 = () => {
                   <span className="block text-gray-500">
                     {exp.startDate || 'No start date'} - {exp.endDate || 'Present'}
                   </span>
-                  <p className="mt-2 text-gray-700">{exp.workSummery || 'No work summary'}</p>
+                  <p 
+                    className="mt-2 text-gray-700" 
+                    style={{ 
+                      wordWrap: 'break-word', 
+                      wordBreak: 'break-all', 
+                      overflowWrap: 'break-word',
+                      whiteSpace: 'normal'
+                    }}>{exp.workSummery || 'No work summary'}</p>
                 </div>
               ))
             ) : (
@@ -116,7 +130,14 @@ const Template10 = () => {
                     {edu.universityName || 'No university'}, {edu.startDate || 'No start date'} -{' '}
                     {edu.endDate || 'No end date'}
                   </span>
-                  <p className="mt-2 text-gray-700">{edu.description || 'No description'}</p>
+                  <p 
+                    className="mt-2 text-gray-700" 
+                    style={{ 
+                      wordWrap: 'break-word', 
+                      wordBreak: 'break-all', 
+                      overflowWrap: 'break-word',
+                      whiteSpace: 'normal'
+                    }}>{edu.description || 'No description'}</p>
                 </div>
               ))
             ) : (

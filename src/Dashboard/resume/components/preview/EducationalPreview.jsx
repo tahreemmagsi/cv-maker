@@ -22,8 +22,14 @@ function EducationalPreview({resumeInfo}) {
               <h2 className='text-xs flex justify-between'>{education?.degree} in {education?.major}
               <span>{education?.startDate} - {education?.endDate}</span>
               </h2>
-              <p className='text-xs my-2'>
-                  {education?.description}
+              <p 
+                    className="mt-2 text-gray-700" 
+                    style={{ 
+                      wordWrap: 'break-word', 
+                      wordBreak: 'break-all', 
+                      overflowWrap: 'break-word',
+                      whiteSpace: 'normal'
+                    }}>                  {education?.description}
               </p>
           </div>
       ))}

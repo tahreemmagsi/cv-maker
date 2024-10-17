@@ -18,8 +18,11 @@ function Summery({ enabledNext }) {
     const params = useParams();
     const [aiGeneratedSummeryList, setAiGenerateSummeryList] = useState([]);
 
+    // Filter out dummy text like "Lorem ipsum"
+    const isValidSummery = (text) => text && !text.toLowerCase().includes("lorem ipsum");
+
     useEffect(() => {
-        if (resumeInfo?.summery && summery === "") {
+        if (resumeInfo?.summery && summery === "" && isValidSummery(resumeInfo.summery)) {
             setSummery(resumeInfo.summery);
         }
     }, [resumeInfo, summery]);
@@ -40,15 +43,17 @@ function Summery({ enabledNext }) {
             const result = await AIchatSession.sendMessage(PROMPT);
             const responseText = await result.response.text();
             console.log("Raw AI Response:", responseText);
-
+    
+            // Remove any unnecessary formatting
             const cleanedResponse = responseText.replace(/```json|```/g, '');
             const parsedResponse = JSON.parse(cleanedResponse);
             console.log("Parsed AI Response:", parsedResponse);
-
-            if (Array.isArray(parsedResponse)) {
-                setAiGenerateSummeryList(parsedResponse);
+    
+            // Check if the response contains the expected structure
+            if (parsedResponse.experience_levels && Array.isArray(parsedResponse.experience_levels)) {
+                setAiGenerateSummeryList(parsedResponse.experience_levels); // Extract the array
             } else {
-                console.error("Parsed response is not an array:", parsedResponse);
+                console.error("Parsed response does not contain 'experience_levels':", parsedResponse);
                 toast.error("Unexpected response format from AI. Please try again.");
             }
         } catch (error) {
@@ -58,7 +63,7 @@ function Summery({ enabledNext }) {
             setLoading(false);
         }
     };
-
+    
     const onSave = (e) => {
         e.preventDefault();
         setLoading(true);
@@ -96,7 +101,7 @@ function Summery({ enabledNext }) {
                         </button>
                     </div>
                     <Textarea className="mt-5" required
-                        value={summery}
+                        value={isValidSummery(summery) ? summery : ""} // Ensure valid summary is shown
                         onChange={(e) => {
                             setSummery(e.target.value);
                             enabledNext(false); // Disable next button on change

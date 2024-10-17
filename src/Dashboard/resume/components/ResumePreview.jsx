@@ -24,7 +24,7 @@ import Template22 from '@/Templates/Template22';
 import Template23 from '@/Templates/Template23';
 import Template24 from '@/Templates/template24';
 
-function ResumePreview({ templateId, imageId }) {
+function ResumePreview({ templateId, imageId, }) {
   const renderTemplate = () => {
     switch (templateId) {
       case 1:

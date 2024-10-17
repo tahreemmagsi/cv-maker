@@ -57,11 +57,14 @@ function AddResume() {
   };
 
   return (
+    <Dialog>
+        <DialogTrigger asChild>
+
     <div className='p-14 py-24 border items-center flex justify-center bg-secondary rounded-lg h-[280px] w-[280px] hover:scale-105
      transition-all hover:shadow-md cursor-pointer mt-4'>
-      <Dialog>
-        <DialogTrigger asChild>
           <PlusSquare />
+          </div>
+
         </DialogTrigger>
         <DialogContent className='sm:max-w-md'>
           <DialogHeader>
@@ -90,7 +93,6 @@ function AddResume() {
           </DialogFooter>
         </DialogContent>
       </Dialog>
-    </div>
   );
 }
 

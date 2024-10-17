@@ -1,144 +1,7 @@
 import React, { useContext } from 'react';
-import styled from 'styled-components';
 import { ResumeinfoContext } from '@/context/ResumeinfoContext';
 
-const HomePageContainer = styled.div`
-  font-family: 'Urbanist', sans-serif;
-  margin: 0 auto;
-  max-width: 750px;
-  padding: 20px;
-  background: #f5f5f5;
-  color: #333;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-  border: 1px solid black;
-`;
-
-const ContentSection = styled.section`
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-`;
-
-const NameSection = styled.section`
-  background: ${({ themeColor }) => themeColor || '#0A3D62'};
-  padding: 20px;
-  color: white;
-  border-radius: 6px;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
-`;
-
-const NameTitle = styled.h1`
-  font-size: 1.5rem;
-  margin: 5px 0;
-  @media (max-width: 768px) {
-    font-size: 1.25rem;
-  }
-`;
-
-const ContactContainer = styled.div`
-  display: flex;
-  align-items: center;
-  margin: 5px 0;
-`;
-
-const ContactHeading = styled.h3`
-  font-size: 1rem;
-  margin: 0;
-  color: #f0f0f0;
-  font-weight: bold;
-  min-width: 100px;
-`;
-
-const ContactInfo = styled.p`
-  font-size: 0.85rem;
-  margin: 0;
-  padding-left: 10px;
-  @media (max-width: 768px) {
-    font-size: 0.75rem;
-  }
-`;
-
-const SectionTitle = styled.h2`
-  margin-top: 0;
-  font-size: 1.2rem;
-  color: ${({ themeColor }) => themeColor || '#0A3D62'};
-  padding-bottom: 2px;
-  margin-bottom: 8px;
-`;
-
-const SectionContent = styled.p`
-  font-size: 0.8rem;
-  line-height: 1.4;
-  @media (max-width: 768px) {
-    font-size: 0.75rem;
-  }
-`;
-
-const List = styled.ul`
-  list-style-type: none;
-  padding: 0;
-  margin: 0;
-`;
-
-const ListItem = styled.li`
-  display: flex;
-  align-items: center;
-  font-size: 0.8rem;
-  padding: 5px 0;
-  margin-bottom: 5px;
-  color: #333;
-  position: relative;
-  padding-left: 20px;
-  &:before {
-    content: '';
-    position: absolute;
-    left: 0;
-    height: 5px;
-    width: 5px;
-    border-radius: 50%;
-    background: ${({ themeColor }) => themeColor || '#0A3D62'};
-  }
-  @media (max-width: 768px) {
-    font-size: 0.9rem;
-  }
-`;
-
-const TimelineContainer = styled.div`
-  position: relative;
-  padding: 20px 0;
-  margin: 0;
-  border-left: 3px solid ${({ themeColor }) => themeColor || '#0A3D62'};
-`;
-
-const TimelineItem = styled.div`
-  position: relative;
-  padding-left: 50px;
-  margin-bottom: 20px;
-  &:last-child {
-    margin-bottom: 0;
-  }
-  &:before {
-    content: '';
-    position: absolute;
-    left: -10px;
-    top: 0;
-    height: 12px;
-    width: 12px;
-    border-radius: 50%;
-    background: ${({ themeColor }) => themeColor || '#0A3D62'};
-    border: 2px solid white;
-  }
-`;
-
-const TimelineContent = styled.div`
-  padding-left: 10px;
-`;
-
-function Template3() {
+const Template3 = () => {
   const { resumeInfo } = useContext(ResumeinfoContext);
 
   if (!resumeInfo) {
@@ -153,119 +16,107 @@ function Template3() {
     phone,
     email,
     themeColor,
-    summery,
+    summery, // Assuming summery is a typo, should be "summary"
     experience = [],
     education = [],
     skills = [],
   } = resumeInfo;
 
+  const headerBgColor = themeColor || '#00008B'; // Blue background color for the header
+  const mainHeadingColor = '#000000';
+  const subHeadingColor = themeColor || '#00008B';
+  const skillBarColor = themeColor || '#00008B';
+
   return (
-    <HomePageContainer>
-      <ContentSection>
-        <NameSection themeColor={themeColor}>
-          <NameTitle>{`${firstName} ${lastName}`}</NameTitle>
-          <ContactContainer>
-            <ContactHeading>Job Title:</ContactHeading>
-            <ContactInfo>{jobTitle || 'No job title provided'}</ContactInfo>
-          </ContactContainer>
-          <ContactContainer>
-            <ContactHeading>Address:</ContactHeading>
-            <ContactInfo>{address || 'No address provided'}</ContactInfo>
-          </ContactContainer>
-          <ContactContainer>
-            <ContactHeading>Contact:</ContactHeading>
-            <ContactInfo>{phone || 'No phone number provided'}</ContactInfo>
-          </ContactContainer>
-          <ContactContainer>
-            <ContactHeading>Email:</ContactHeading>
-            <ContactInfo>{email || 'No email provided'}</ContactInfo>
-          </ContactContainer>
-        </NameSection>
+    <div className="bg-gray-100 min-h-screen" style={{ backgroundColor: '#f0f0f0' }}>
+      {/* Header Section */}
+      <div className="p-8" style={{ backgroundColor: headerBgColor, color: '#ffffff' }}>
+        <h3 className="text-4xl font-bold">
+          {`${firstName || ''} ${lastName || ''}`}
+        </h3>
+        <h6 className="text-2xl">
+          {jobTitle || ''}
+        </h6>
+        <p>
+          {address || 'No address provided'} | {phone || 'No phone provided'} | {email || 'No email provided'}
+        </p>
+      </div>
 
-        <TimelineContainer themeColor={themeColor}>
-          <TimelineItem themeColor={themeColor}>
-            <TimelineContent>
-              <SectionTitle themeColor={themeColor}>Summary</SectionTitle>
-              <SectionContent>{summery || 'No summary provided'}</SectionContent>
-            </TimelineContent>
-          </TimelineItem>
+      <div className="p-8">
+        {/* Summary Section */}
+        {summery && (
+          <div className="mb-8">
+            <h3 className="text-2xl font-semibold" style={{ color: mainHeadingColor }}>Summary</h3>
+            <p className="text-gray-600">{summery}</p>
+          </div>
+        )}
+        <div>
+          <h3 className="text-2xl font-semibold mb-4" style={{ color: mainHeadingColor }}>Skills</h3>
+          {skills.length > 0 ? (
+            skills.map((skill) => (
+              <div key={skill.id} className="mb-4">
+                <span className="text-gray-700">{skill.name}</span>
+                <div className="w-64 bg-gray-300 rounded-full h-2 mt-1">
+                  <div
+                    className="h-2 rounded-full"
+                    style={{
+                      width: `${skill.rating * 20}%`,
+                      backgroundColor: skillBarColor,
+                    }}
+                  ></div>
+                </div>
+              </div>
+            ))
+          ) : (
+            <p>No skills listed</p>
+          )}
+        </div>
 
-          <TimelineItem themeColor={themeColor}>
-            <TimelineContent>
-              <SectionTitle themeColor={themeColor}>Skills</SectionTitle>
-              <List>
-                {skills.length > 0 ? (
-                  skills.map((skill, index) => (
-                    <ListItem key={index} themeColor={themeColor}>
-                      {skill.name || 'Unnamed Skill'}
-                    </ListItem>
-                  ))
-                ) : (
-                  <ListItem>No skills listed</ListItem>
-                )}
-              </List>
-            </TimelineContent>
-          </TimelineItem>
+        {/* Timeline Section */}
+        <div>
+          <h3 className="text-2xl font-semibold" style={{ color: mainHeadingColor }}>Experience & Education</h3>
+          <div className="mt-8">
+            {experience.length > 0 && (
+              <div className="mb-8">
+                <h4 className="text-xl font-semibold" style={{ color: subHeadingColor }}>Work Experience</h4>
+                <div className="relative pl-6 border-l-2 border-gray-300">
+                  {experience.map((exp) => (
+                    <div key={exp.id} className="mb-6 relative">
+                      {/* Adjusted the dot position to avoid overlap */}
+                      <div className="absolute left-[-15px] top-[5px] w-3 h-3  rounded-full"style={{ color: subHeadingColor }}></div>
+                      <h5 className="font-bold">{exp.title}</h5>
+                      <p className="text-sm text-gray-600">{exp.companyName} | {exp.city}, {exp.state}</p>
+                      <span className="text-sm">{exp.startDate} - {exp.endDate || 'Present'}</span>
+                      <p className="text-gray-600 mt-1">{exp.workSummery}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
 
-          <TimelineItem themeColor={themeColor}>
-            <TimelineContent>
-              <SectionTitle themeColor={themeColor}>Work History</SectionTitle>
-              {experience.length > 0 ? (
-                experience.map((exp, index) => (
-                  <div key={index}>
-                    <h3 style={{ fontSize: '0.8rem' }}>
-                      {exp.position || 'Position not specified'}
-                    </h3>
-                    <p>
-                      {exp.company || 'Company not specified'} —{' '}
-                      {exp.location || 'Location not specified'} |{' '}
-                      <em>
-                        {exp.startDate || 'Start date not specified'} –{' '}
-                        {exp.endDate || 'Present'}
-                      </em>
-                    </p>
-                    <List>
-                      {(exp.details || []).map((detail, detailIndex) => (
-                        <ListItem key={detailIndex}>
-                          {detail || 'Detail not specified'}
-                        </ListItem>
-                      ))}
-                    </List>
-                  </div>
-                ))
-              ) : (
-                <p>No work experience listed</p>
-              )}
-            </TimelineContent>
-          </TimelineItem>
+            {education.length > 0 && (
+              <div className="mb-8">
+                <h4 className="text-xl font-semibold" style={{ color: subHeadingColor }}>Education</h4>
+                <div className="relative pl-6 border-l-2 border-gray-300">
+                  {education.map((edu) => (
+                    <div key={edu.id} className="mb-6 relative">
+                      {/* Adjusted the dot position to avoid overlap */}
+                      <h5 className="font-bold">{edu.degree}</h5>
+                      <p className="text-sm text-gray-600">{edu.universityName}</p>
+                      <span className="text-sm">{edu.startDate} - {edu.endDate}</span>
+                      <p className="text-gray-600 mt-1">{edu.description}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+          </div>
+        </div>
 
-          <TimelineItem themeColor={themeColor}>
-            <TimelineContent>
-              <SectionTitle themeColor={themeColor}>Education</SectionTitle>
-              {education.length > 0 ? (
-                education.map((edu, index) => (
-                  <div key={index}>
-                    <p style={{ fontSize: '0.9rem' }}>
-                      {edu.degree || 'Degree not specified'}
-                    </p>
-                    <p style={{ fontSize: '0.9rem' }}>
-                      {edu.institution || 'Institution not specified'} —{' '}
-                      {edu.location || 'Location not specified'} |{' '}
-                      <em>
-                        Graduation: {edu.graduationDate || 'Graduation date not specified'}
-                      </em>
-                    </p>
-                  </div>
-                ))
-              ) : (
-                <p>No education details listed</p>
-              )}
-            </TimelineContent>
-          </TimelineItem>
-        </TimelineContainer>
-      </ContentSection>
-    </HomePageContainer>
+        {/* Skills Section */}
+      </div>
+    </div>
   );
-}
+};
 
 export default Template3;

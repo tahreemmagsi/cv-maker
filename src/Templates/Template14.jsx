@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import  { useContext } from 'react';
 import { ResumeinfoContext } from '@/context/ResumeinfoContext';
 import { FaPhone, FaEnvelope, FaMapMarkerAlt, FaLinkedin, FaGithub } from 'react-icons/fa';
 
@@ -19,7 +19,7 @@ const Template14 = () => {
     linkedin,
     github,
     themeColor,
-    summary,
+    summery,
     experience = [],
     education = [],
     skills = [],
@@ -40,7 +40,14 @@ const Template14 = () => {
           <h2 className="text-xl mt-2" style={{ color: primaryColor }}>
             {jobTitle || 'Job Title'}
           </h2>
-          <p className="mt-4 text-gray-700">{summary || 'A brief professional summary.'}</p>
+          <p 
+                    className="mt-2 text-gray-700" 
+                    style={{ 
+                      wordWrap: 'break-word', 
+                      wordBreak: 'break-all', 
+                      overflowWrap: 'break-word',
+                      whiteSpace: 'normal'
+                    }}>{summery || 'A brief professional summary.'}</p>
         </div>
 
         {/* Timeline Section */}
@@ -94,7 +101,14 @@ const Template14 = () => {
                     {exp.title || 'Title'} @ {exp.companyName || 'Company'}
                   </h4>
                   <p className="text-xs text-gray-600">{exp.startDate || 'Start'} - {exp.endDate || 'End'}</p>
-                  <p className="mt-2 text-gray-700">{exp.workSummery || 'No description'}</p>
+                  <p 
+                    className="mt-2 text-gray-700" 
+                    style={{ 
+                      wordWrap: 'break-word', 
+                      wordBreak: 'break-all', 
+                      overflowWrap: 'break-word',
+                      whiteSpace: 'normal'
+                    }}>{exp.workSummery || 'No description'}</p>
 
                 </div>
               ))}
@@ -112,7 +126,14 @@ const Template14 = () => {
                     {edu.degree || 'Degree'}
                   </h4>
                   <p className="text-xs text-gray-600">{edu.startDate || 'Start'} - {edu.endDate || 'End'}</p>
-                  <p className="mt-2 text-gray-700">{edu.description || 'No description'}</p>
+                  <p 
+                    className="mt-2 text-gray-700" 
+                    style={{ 
+                      wordWrap: 'break-word', 
+                      wordBreak: 'break-all', 
+                      overflowWrap: 'break-word',
+                      whiteSpace: 'normal'
+                    }}>{edu.description || 'No description'}</p>
 
                 </div>
               ))}

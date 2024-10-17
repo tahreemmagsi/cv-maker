@@ -54,11 +54,11 @@ const Template22 = ({imageId}) => {
               {address || 'No address provided'}
             </Text>
             <Text className="text-gray-600 mb-2">
-              <FaPhoneAlt className="inline-block mr-2" />
+              <FaPhoneAlt className="inline-block mr-2 ml-4" />
               {phone || 'No phone number provided'}
             </Text>
             <Text className="text-gray-600">
-              <FaEnvelope className="inline-block mr-2" />
+              <FaEnvelope className="inline-block ml-4 mr-2" />
               {email || 'No email provided'}
             </Text>
           </div>
@@ -69,7 +69,14 @@ const Template22 = ({imageId}) => {
           <Title level={3} style={{ color: mainHeadingColor }}>
             Summary
           </Title>
-          <Text>{summery || 'No summary provided'}</Text>
+          <p 
+                    className="mt-2 text-gray-700" 
+                    style={{ 
+                      wordWrap: 'break-word', 
+                      wordBreak: 'break-all', 
+                      overflowWrap: 'break-word',
+                      whiteSpace: 'normal'
+                    }}>{summery || 'No summary provided'}</p>
         </div>
 
         {/* Experience Section */}
@@ -86,7 +93,14 @@ const Template22 = ({imageId}) => {
                   </Title>
                   <Text>{`${exp.companyName || 'No company name'}, ${exp.city || 'No city'}, ${exp.state || 'No state'}`}</Text>
                   <Text>{`${exp.startDate || 'No start date'} - ${exp.endDate || 'Present'}`}</Text>
-                  <Text>{exp.workSummery || 'No work summary'}</Text>
+                  <p 
+                    className="mt-2 text-gray-700" 
+                    style={{ 
+                      wordWrap: 'break-word', 
+                      wordBreak: 'break-all', 
+                      overflowWrap: 'break-word',
+                      whiteSpace: 'normal'
+                    }}>{exp.workSummery || 'No work summary'}</p>
                 </Timeline.Item>
               ))
             ) : (
@@ -108,7 +122,14 @@ const Template22 = ({imageId}) => {
                     {edu.degree || 'No degree'}
                   </Title>
                   <Text>{`${edu.universityName || 'No university'}, ${edu.startDate || 'No start date'} - ${edu.endDate || 'No end date'}`}</Text>
-                  <Text>{edu.description || 'No description'}</Text>
+                  <p 
+                    className="mt-2 text-gray-700" 
+                    style={{ 
+                      wordWrap: 'break-word', 
+                      wordBreak: 'break-all', 
+                      overflowWrap: 'break-word',
+                      whiteSpace: 'normal'
+                    }}>{edu.description || 'No description'}</p>
                 </Timeline.Item>
               ))
             ) : (

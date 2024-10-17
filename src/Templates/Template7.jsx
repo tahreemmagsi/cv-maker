@@ -89,7 +89,15 @@ const Template7 = () => {
                   <span className="block text-gray-500">
                     {`${exp.startDate || 'No start date'} - ${exp.endDate || 'Present'}`}
                   </span>
-                  <p className="mt-2 text-gray-700">{exp.workSummery || 'No work summary'}</p>
+                  <p 
+                    className="mt-2 text-gray-700" 
+                    style={{ 
+                      wordWrap: 'break-word', 
+                      wordBreak: 'break-all', 
+                      overflowWrap: 'break-word',
+                      whiteSpace: 'normal'
+                    }}>
+{exp.workSummery || 'No work summary'}</p>
                 </div>
               ))
             ) : (
@@ -109,7 +117,15 @@ const Template7 = () => {
                   <span className="block text-gray-600">
                     {`${edu.universityName || 'No university'}, ${edu.startDate || 'No start date'} - ${edu.endDate || 'No end date'}`}
                   </span>
-                  <p className="mt-2 text-gray-700">{edu.description || 'No description'}</p>
+                  <p 
+                    className="mt-2 text-gray-700" 
+                    style={{ 
+                      wordWrap: 'break-word', 
+                      wordBreak: 'break-all', 
+                      overflowWrap: 'break-word',
+                      whiteSpace: 'normal'
+                    }}>
+{edu.description || 'No description'}</p>
                 </div>
               ))
             ) : (

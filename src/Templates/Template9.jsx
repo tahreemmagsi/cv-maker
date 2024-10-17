@@ -17,7 +17,7 @@ const Template9 = () => {
     phone,
     email,
     themeColor,
-    summary,
+    summery,
     experience = [],
     education = [],
     skills = [],
@@ -34,17 +34,30 @@ const Template9 = () => {
         <div className="bg-gradient-to-r from-blue-400 to-teal-500 p-6 text-white text-center">
           <h1 className="text-4xl font-bold">{`${firstName || ''} ${lastName || ''}`}</h1>
           <h2 className="text-xl mt-2">{jobTitle || 'Job Title'}</h2>
+          <p className=" ">{    address || 'Job Title'}</p>
+          <p className="">{phone || 'Job Title'}</p>
+          <p className="">{email || 'Job Title'}</p>
+
+
+
         </div>
 
         {/* Main Content Section */}
         <div className="p-8">
           {/* Summary Section */}
-          {summary && (
+          {summery && (
             <div className="mb-8">
               <h3 className="text-2xl font-semibold mb-4" style={{ color: headerColor }}>
                 SUMMARY
               </h3>
-              <p className="text-gray-700">{summary}</p>
+              <p 
+                    className="mt-2 text-gray-700" 
+                    style={{ 
+                      wordWrap: 'break-word', 
+                      wordBreak: 'break-all', 
+                      overflowWrap: 'break-word',
+                      whiteSpace: 'normal'
+                    }}>{summery}</p>
             </div>
           )}
 
@@ -69,7 +82,14 @@ const Template9 = () => {
                       <span className="block text-gray-500">
                         {exp.startDate || 'No start date'} - {exp.endDate || 'Present'}
                       </span>
-                      <p className="mt-2 text-gray-700">{exp.workSummery || 'No work summary'}</p>
+                      <p 
+                    className="mt-2 text-gray-700" 
+                    style={{ 
+                      wordWrap: 'break-word', 
+                      wordBreak: 'break-all', 
+                      overflowWrap: 'break-word',
+                      whiteSpace: 'normal'
+                    }}>{exp.workSummery || 'No work summary'}</p>
                     </div>
                   </div>
                 ))
@@ -95,7 +115,15 @@ const Template9 = () => {
                         {edu.universityName || 'No university'}, {edu.startDate || 'No start date'} -{' '}
                         {edu.endDate || 'No end date'}
                       </span>
-                      <p className="mt-2 text-gray-700">{edu.description || 'No description'}</p>
+                      <p 
+                    className="mt-2 text-gray-700" 
+                    style={{ 
+                      wordWrap: 'break-word', 
+                      wordBreak: 'break-all', 
+                      overflowWrap: 'break-word',
+                      whiteSpace: 'normal'
+                    }}>
+{edu.description || 'No description'}</p>
                     </div>
                   </div>
                 ))

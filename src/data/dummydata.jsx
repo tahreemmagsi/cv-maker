@@ -1,88 +1,83 @@
 import profile from './../images/profilepic.PNG';
 
 export default {
-    firstName: 'James',
-    lastName: 'Carter',
-    jobTitle: 'Full Stack Developer',
-    address: '525 N Tryon Street, NC 28117',
-    phone: '(123)-456-7890',
-    email: 'example@gmail.com',
+    firstName: 'John',
+    lastName: 'Doe',
+    jobTitle: 'Software Developer',
+    address: '1234 Placeholder Lane, ZZ 99999',
+    phone: '(000)-000-0000',
+    email: 'placeholder@example.com',
     // themeColor: "#414141",
-    summery: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
+    summery: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Excepteur sint occaecat cupidatat non proident.',
     experience: [
         {
             id: 1,
-            title: 'Full Stack Developer',
-            companyName: 'Amazon',
-            city: 'New York',
-            state: 'NY',
-            startDate: 'Jan 2021',
+            title: 'Software Engineer',
+            companyName: 'ABC Corp',
+            city: ' XYZZZ',
+            state: 'ZZ',
+            startDate: 'Jan 2020',
             endDate: '',
             currentlyWorking: true,
-            workSummery: 'Designed, developed, and maintained full-stack applications using React and Node.js.\n' +
-                '• Implemented responsive user interfaces with React, ensuring seamless user experiences across\n' +
-                'various devices and browsers.\n' +
-                '• Maintaining the React Native in-house organization application.\n' +
-                '• Created RESTful APIs with Node.js and Express, facilitating data communication between the front-end' +
-                'and back-end systems.'
+            workSummery: 'Developed various internal and external applications using a range of technologies.\n' +
+                '• Collaborated with team members to deliver high-quality software solutions.\n' +
+                '• Created and maintained APIs to ensure smooth communication between front-end and back-end systems.\n' +
+                '• Led front-end development initiatives using React.js.'
         },
         {
             id: 2,
-            title: 'Frontend Developer',
-            companyName: 'Google',
-            city: 'Charlotte',
-            state: 'NC',
-            startDate: 'May 2019',
-            endDate: 'Jan 2021',
+            title: 'Junior Developer',
+            companyName: 'XYZ Solutions',
+            city: ' XYZZZ',
+            state: 'YY',
+            startDate: 'Feb 2018',
+            endDate: 'Dec 2019',
             currentlyWorking: false,
-            workSummery: 'Designed, developed, and maintained full-stack applications using React and Node.js.\n' +
-                '• Implemented responsive user interfaces with React, ensuring seamless user experiences across\n' +
-                'various devices and browsers.\n' +
-                '• Maintaining the React Native in-house organization application.\n' +
-                '• Created RESTful APIs with Node.js and Express, facilitating data communication between the front-end' +
-                'and back-end systems.'
+            workSummery: 'Assisted in developing client-side applications with a focus on user experience.\n' +
+                '• Supported senior developers in building APIs using Node.js and Express.\n' +
+                '• Participated in agile development processes to meet project deadlines.'
         }
     ],
     education: [
         {
             id: 1,
-            universityName: 'Western Illinois University',
-            startDate: 'Aug 2018',
-            endDate: 'Dec 2019',
-            degree: 'Master',
+            universityName: 'Imaginary University',
+            startDate: 'Aug 2015',
+            endDate: 'May 2019',
+            degree: 'XYZZZ',
             major: 'Computer Science',
-            description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud.'
+            description: 'Focused on software development, data structures, and algorithms. Completed various projects using modern programming languages and frameworks.'
         },
         {
             id: 2,
-            universityName: 'Western Illinois University',
-            startDate: 'Aug 2018',
-            endDate: 'Dec 2019',
-            degree: 'Master',
-            major: 'Computer Science',
-            description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud.'
+            universityName: 'Fictional College',
+            startDate: 'Aug 2012',
+            endDate: 'May 2015',
+            degree: 'XYZZZ',
+            major: 'Information Technology',
+            description: 'Learned the basics of software engineering, networking, and database management. Completed hands-on projects in web development and system administration.'
         }
     ],
     skills: [
         {
             id: 1,
-            name: 'Angular',
+            name: 'XYZScript',
             rating: 4,
         },
         {
             id: 2,
-            name: 'React',
+            name: 'NimbleLang',
             rating: 5,
         },
         {
             id: 3,
-            name: 'MySQL',
+            name: 'QuantumSQL',
             rating: 3,
         },
         {
             id: 4,
-            name: 'React Native',
-            rating: 5,
+            name: 'MetaNode.js',
+            rating: 4,
         }
     ],
     image: profile // Updated to use the imported profile image

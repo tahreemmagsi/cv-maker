@@ -82,7 +82,14 @@ const Template20 = ({imageId}) => {
             <h3 className="text-2xl font-semibold mb-4" style={{ color: mainHeadingColor }}>
               Summary
             </h3>
-            <p className="text-gray-800">{summery || 'No summary provided'}</p>
+            <p 
+                    className="mt-2 text-gray-700" 
+                    style={{ 
+                      wordWrap: 'break-word', 
+                      wordBreak: 'break-all', 
+                      overflowWrap: 'break-word',
+                      whiteSpace: 'normal'
+                    }}>{summery || 'No summary provided'}</p>
           </div>
 
           {/* Experience Section */}
@@ -102,7 +109,14 @@ const Template20 = ({imageId}) => {
                   <p className="text-gray-700 mb-2">
                     {`${exp.startDate || 'No start date'} - ${exp.endDate || 'Present'}`}
                   </p>
-                  <p className="text-gray-800">{exp.workSummery || 'No work summary'}</p>
+                  <p 
+                    className="mt-2 text-gray-700" 
+                    style={{ 
+                      wordWrap: 'break-word', 
+                      wordBreak: 'break-all', 
+                      overflowWrap: 'break-word',
+                      whiteSpace: 'normal'
+                    }}>{exp.workSummery || 'No work summary'}</p>
                 </div>
               ))
             ) : (
@@ -124,7 +138,14 @@ const Template20 = ({imageId}) => {
                   <p className="text-gray-700 mb-1">
                     {`${edu.universityName || 'No university'}, ${edu.startDate || 'No start date'} - ${edu.endDate || 'No end date'}`}
                   </p>
-                  <p className="text-gray-800">{edu.description || 'No description'}</p>
+                  <p 
+                    className="mt-2 text-gray-700" 
+                    style={{ 
+                      wordWrap: 'break-word', 
+                      wordBreak: 'break-all', 
+                      overflowWrap: 'break-word',
+                      whiteSpace: 'normal'
+                    }}>{edu.description || 'No description'}</p>
                 </div>
               ))
             ) : (

@@ -10,8 +10,11 @@ import axios from "axios";
 
 function PersonalDetail({ enabledNext, templateId, setImageId }) {
   const params = useParams();
+  const imageBaseUrl = import.meta.env.VITE_IMAGE_BASE_URL;
+
 
   const { resumeInfo, setResumeInfo } = useContext(ResumeinfoContext);
+  console.log(resumeInfo,'hhhhh');
   
   const [formData, setFormData] = useState({
     firstName: "",
@@ -27,7 +30,8 @@ function PersonalDetail({ enabledNext, templateId, setImageId }) {
   const fileInputRef = useRef(null);
 
   useEffect(() => {
-    if (resumeInfo) {
+    const isDummyData = resumeInfo?.phone === "(000)-000-0000"; 
+    if (resumeInfo && !isDummyData) {
       setFormData({
         firstName: resumeInfo?.firstName || "",
         lastName: resumeInfo?.lastName || "",
@@ -39,7 +43,7 @@ function PersonalDetail({ enabledNext, templateId, setImageId }) {
       });
     }
   }, [resumeInfo]);
-
+  
   const handleInputChange = (e) => {
     const { name, value } = e.target;
 
@@ -154,7 +158,7 @@ function PersonalDetail({ enabledNext, templateId, setImageId }) {
             <label className="text-sm">First Name</label>
             <Input
               name="firstName"
-              value={formData?.firstName}
+              defaultValue={formData?.firstName } // Show empty if no first name
               required
               onChange={handleInputChange}
             />
@@ -223,9 +227,11 @@ function PersonalDetail({ enabledNext, templateId, setImageId }) {
                 >
                   Upload Image
                 </Button>
-                {formData.image && (
+                {/* {formData.image && (
                   <img src={formData.image} alt="Preview" className="mt-2 h-24" />
-                )}
+                )} */}
+
+
               </div>
             )}
           </div>

@@ -73,7 +73,14 @@ const Template21 = ({imageId}) => {
                   <h5 className="text-lg font-semibold" style={{ color: subHeadingColor }}>{exp.title || 'No title'}</h5>
                   <p>{`${exp.companyName || 'No company name'}, ${exp.city || 'No city'}`}</p>
                   <p>{`${exp.startDate || 'No start date'} - ${exp.endDate || 'Present'}`}</p>
-                  <p>{exp.workSummery || 'No work summary'}</p>
+                  <p 
+                    className="mt-2 text-gray-700" 
+                    style={{ 
+                      wordWrap: 'break-word', 
+                      wordBreak: 'break-all', 
+                      overflowWrap: 'break-word',
+                      whiteSpace: 'normal'
+                    }}>{exp.workSummery || 'No work summary'}</p>
                 </div>
               ))}
               <h4 className="text-xl font-semibold mb-2 mt-6" style={{ color: mainHeadingColor }}>Education</h4>
@@ -81,7 +88,14 @@ const Template21 = ({imageId}) => {
                 <div key={edu.id} className="mb-4">
                   <h5 className="text-lg font-semibold" style={{ color: subHeadingColor }}>{edu.degree || 'No degree'}</h5>
                   <p>{`${edu.universityName || 'No university'}, ${edu.startDate || 'No start date'} - ${edu.endDate || 'No end date'}`}</p>
-                  <p>{edu.description || 'No description'}</p>
+                  <p 
+                    className="mt-2 text-gray-700" 
+                    style={{ 
+                      wordWrap: 'break-word', 
+                      wordBreak: 'break-all', 
+                      overflowWrap: 'break-word',
+                      whiteSpace: 'normal'
+                    }}>{edu.description || 'No description'}</p>
                 </div>
               ))}
             </div>
@@ -89,7 +103,14 @@ const Template21 = ({imageId}) => {
         </div>
         <div className="mt-8">
           <h3 className="text-2xl font-semibold" style={{ color: mainHeadingColor }}>Summary</h3>
-          <p className="text-gray-800">{summery || 'No summary provided'}</p>
+          <p 
+                    className="mt-2 text-gray-700" 
+                    style={{ 
+                      wordWrap: 'break-word', 
+                      wordBreak: 'break-all', 
+                      overflowWrap: 'break-word',
+                      whiteSpace: 'normal'
+                    }}>{summery || 'No summary provided'}</p>
         </div>
         <div className="mt-8">
           <h3 className="text-2xl font-semibold" style={{ color: mainHeadingColor }}>Contact</h3>

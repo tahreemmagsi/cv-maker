@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import  { useContext } from 'react';
 import { ResumeinfoContext } from '@/context/ResumeinfoContext';
 import { FaPhone, FaEnvelope, FaMapMarkerAlt } from 'react-icons/fa';
 
@@ -18,7 +18,7 @@ const Template13 = () => {
     phone,
     email,
     themeColor,
-    summary,
+    summery,
     experience = [],
     education = [],
     skills = [],
@@ -55,10 +55,17 @@ const Template13 = () => {
             </div>
           </div>
           <div className="sm:w-2/3 p-4 sm:p-8">
-            {summary && (
+            {summery && (
               <div>
                 <h3 className="text-2xl font-semibold mb-4 text-white">Professional Summary</h3>
-                <p className="text-gray-200">{summary}</p>
+                <p 
+                    className="mt-2 text-gray-200" 
+                    style={{ 
+                      wordWrap: 'break-word', 
+                      wordBreak: 'break-all', 
+                      overflowWrap: 'break-word',
+                      whiteSpace: 'normal'
+                    }}>{summery}</p>
               </div>
             )}
           </div>
@@ -80,8 +87,11 @@ const Template13 = () => {
                   </li>
                 ))}
               </ul>
+            
             </div>
+            
           )}
+          
 
           {/* Experience and Education Section */}
           <div className="w-full sm:w-3/4 p-6">
@@ -103,7 +113,14 @@ const Template13 = () => {
                     <span className="block text-gray-500">
                       {exp.startDate || 'No start date'} - {exp.endDate || 'Present'}
                     </span>
-                    <p className="mt-2 text-gray-700">{exp.workSummery || 'No work summary'}</p>
+                    <p 
+                    className="mt-2 text-gray-700" 
+                    style={{ 
+                      wordWrap: 'break-word', 
+                      wordBreak: 'break-all', 
+                      overflowWrap: 'break-word',
+                      whiteSpace: 'normal'
+                    }}>{exp.workSummery || 'No work summary'}</p>
                     <hr className="my-2 border-gray-300" />
                   </div>
                 ))
@@ -127,7 +144,14 @@ const Template13 = () => {
                       {edu.universityName || 'No university'}, {edu.startDate || 'No start date'} -{' '}
                       {edu.endDate || 'No end date'}
                     </span>
-                    <p className="mt-2 text-gray-700">{edu.description || 'No description'}</p>
+                    <p 
+                    className="mt-2 text-gray-700" 
+                    style={{ 
+                      wordWrap: 'break-word', 
+                      wordBreak: 'break-all', 
+                      overflowWrap: 'break-word',
+                      whiteSpace: 'normal'
+                    }}>{edu.description || 'No description'}</p>
                     <hr className="my-2 border-gray-300" />
                   </div>
                 ))

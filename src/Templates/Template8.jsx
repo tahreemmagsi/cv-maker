@@ -49,9 +49,9 @@ const Template8 = () => {
                 skills.map((skill) => (
                   <li key={skill.id} className="flex items-center justify-between">
                     <span>{skill.name}</span>
-                    <div className="w-24 bg-gray-700 rounded-full h-2 overflow-hidden">
+                    <div className="w-24 bg-white rounded-full h-2 overflow-hidden">
                       <div
-                        className="h-2 rounded-full"
+                        className="h-2 rounded-full bg-white"
                         style={{
                           width: `${skill.rating * 20}%`,
                           backgroundColor: primaryColor,
@@ -92,7 +92,15 @@ const Template8 = () => {
                   <span className="block text-gray-500">
                     {`${exp.startDate || 'No start date'} - ${exp.endDate || 'Present'}`}
                   </span>
-                  <p className="mt-2 text-gray-700">{exp.workSummery || 'No work summary'}</p>
+                  <p 
+                    className="mt-2 text-gray-700" 
+                    style={{ 
+                      wordWrap: 'break-word', 
+                      wordBreak: 'break-all', 
+                      overflowWrap: 'break-word',
+                      whiteSpace: 'normal'
+                    }}>
+{exp.workSummery || 'No work summary'}</p>
                 </div>
               ))
             ) : (
@@ -112,7 +120,15 @@ const Template8 = () => {
                   <span className="block text-gray-600">
                     {`${edu.universityName || 'No university'}, ${edu.startDate || 'No start date'} - ${edu.endDate || 'No end date'}`}
                   </span>
-                  <p className="mt-2 text-gray-700">{edu.description || 'No description'}</p>
+                  <p 
+                    className="mt-2 text-gray-700" 
+                    style={{ 
+                      wordWrap: 'break-word', 
+                      wordBreak: 'break-all', 
+                      overflowWrap: 'break-word',
+                      whiteSpace: 'normal'
+                    }}>
+{edu.description || 'No description'}</p>
                 </div>
               ))
             ) : (

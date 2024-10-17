@@ -1,6 +1,7 @@
 
 import React, { useContext } from 'react';
 import { ResumeinfoContext } from '@/context/ResumeinfoContext';
+import DOMPurify from 'dompurify';
 
 const Template4 = () => {
   const { resumeInfo } = useContext(ResumeinfoContext);
@@ -47,7 +48,15 @@ const Template4 = () => {
             <h3 className="text-xl font-semibold mb-2" style={{ color: mainHeadingColor }}>
               PERSONAL INFORMATION
             </h3>
-            <p className="mb-2">{summery || 'No summary provided'}</p>
+            <p 
+                    className="mt-2" 
+                    style={{ 
+                      wordWrap: 'break-word', 
+                      wordBreak: 'break-all', 
+                      overflowWrap: 'break-word',
+                      whiteSpace: 'normal'
+                    }}>
+{summery || 'No summary provided'}</p>
             <ul className="list-none">
               <li className="flex items-center mb-2">
                 <span className="text-gray-600">Phone:</span>
@@ -101,7 +110,17 @@ const Template4 = () => {
                   </h6>
                   <span className="text-gray-600 block">{`${exp.companyName || 'No company name'}, ${exp.city || 'No city'}, ${exp.state || 'No state'}`}</span>
                   <span className="text-gray-600 block">{`${exp.startDate || 'No start date'} - ${exp.endDate || 'Present'}`}</span>
-                  <p className="mt-2">{exp.workSummery || 'No work summary'}</p>
+                  {/* <p className="mt-2">{exp.workSummery || 'No work summary'}</p> */}
+                  <p 
+                    className="mt-2" 
+                    style={{ 
+                      wordWrap: 'break-word', 
+                      wordBreak: 'break-all', 
+                      overflowWrap: 'break-word',
+                      whiteSpace: 'normal'
+                    }}>
+{exp.workSummery || 'No work summary provided'}</p>
+
                 </div>
               ))
             ) : (
@@ -119,7 +138,15 @@ const Template4 = () => {
                     {edu.degree || 'No degree'}
                   </h6>
                   <span className="text-gray-600 block">{`${edu.universityName || 'No university'}, ${edu.startDate || 'No start date'} - ${edu.endDate || 'No end date'}`}</span>
-                  <p className="mt-2">{edu.description || 'No description'}</p>
+                  <p 
+                    className="mt-2" 
+                    style={{ 
+                      wordWrap: 'break-word', 
+                      wordBreak: 'break-all', 
+                      overflowWrap: 'break-word',
+                      whiteSpace: 'normal'
+                    }}>
+{edu.description || 'No description'}</p>
                 </div>
               ))
             ) : (

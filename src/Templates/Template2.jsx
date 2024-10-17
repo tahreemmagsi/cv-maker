@@ -46,7 +46,16 @@ const Template2 = () => {
         <div className="w-1/3 bg-gray-100 p-6 rounded-lg shadow-md mr-8">
           {/* Profile Summary */}
           <h3 className="text-2xl font-semibold mb-4" style={{ color: mainHeadingColor }}>PROFILE</h3>
-          <p className="mb-6">{summery || 'No summary provided'}</p>
+          <p 
+            className="mb-6" 
+            style={{ 
+              wordWrap: 'break-word', 
+              wordBreak: 'break-all', 
+              overflowWrap: 'break-word',
+              whiteSpace: 'normal' 
+            }}>
+            {summery || 'No summary provided'}
+          </p>
 
           {/* Contact Information */}
           <h3 className="text-xl font-semibold mb-4" style={{ color: subHeadingColor }}>CONTACT</h3>
@@ -61,7 +70,7 @@ const Template2 = () => {
               <svg className="w-4 h-4 mr-2 text-gray-600" fill="currentColor" viewBox="0 0 16 16">
                 <path d="M1 4.5a.5.5 0 0 1 .5-.5h13a.5.5 0 0 1 .5.5v8a.5.5 0 0 1-.5.5H1a.5.5 0 0 1-.5-.5v-8z"/>
               </svg>
-              <span>{email || 'No email provided'}</span>
+              <span className='text-sm'>{email || 'No email provided'}</span>
             </li>
             <li className="flex items-center">
               <svg className="w-4 h-4 mr-2 text-gray-600" fill="currentColor" viewBox="0 0 16 16">
@@ -83,7 +92,16 @@ const Template2 = () => {
                   <h6 className="text-xl font-semibold" style={{ color: subHeadingColor }}>{exp.title || 'No title'}</h6>
                   <span className="text-gray-600">{`${exp.companyName || 'No company name'}, ${exp.city || 'No city'}, ${exp.state || 'No state'}`}</span>
                   <span className="text-gray-600 block">{`${exp.startDate || 'No start date'} - ${exp.endDate || 'Present'}`}</span>
-                  <p className="mt-2">{exp.workSummery || 'No work summary'}</p>
+                  <p 
+                    className="mt-2" 
+                    style={{ 
+                      wordWrap: 'break-word', 
+                      wordBreak: 'break-all', 
+                      overflowWrap: 'break-word',
+                      whiteSpace: 'normal'
+                    }}>
+                    {exp.workSummery || 'No work summary'}
+                  </p>
                 </div>
               ))
             ) : (
@@ -99,7 +117,16 @@ const Template2 = () => {
                 <div key={edu.id} className="mb-6">
                   <h6 className="text-xl font-semibold" style={{ color: subHeadingColor }}>{edu.degree || 'No degree'}</h6>
                   <span className="text-gray-600">{`${edu.universityName || 'No university'}, ${edu.startDate || 'No start date'} - ${edu.endDate || 'No end date'}`}</span>
-                  <p className="mt-2">{edu.description || 'No description'}</p>
+                  <p 
+                    className="mt-2" 
+                    style={{ 
+                      wordWrap: 'break-word', 
+                      wordBreak: 'break-all', 
+                      overflowWrap: 'break-word',
+                      whiteSpace: 'normal'
+                    }}>
+                    {edu.description || 'No description'}
+                  </p>
                 </div>
               ))
             ) : (

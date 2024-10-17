@@ -20,9 +20,19 @@ function Skills() {
     const [loading,setLoading]=useState(false);
     const {resumeInfo,setResumeInfo}=useContext(ResumeinfoContext);
    
-    useEffect(()=>{
-        resumeInfo&&setSkillsList(resumeInfo?.skills)
-      },[])
+    useEffect(() => {
+        // Check if resumeInfo is available and contains skills
+        if (resumeInfo && resumeInfo.skills) {
+            // Check if "XYZScript" is in the skills
+            if (resumeInfo.skills.some(skill => skill.name === 'XYZScript')) {
+                // If it does, reset skillsList to contain an empty skill
+                setSkillsList([{ name: '', rating: 0 }]);
+            } else {
+                // Otherwise, set skillsList to the existing skills
+                setSkillsList(resumeInfo.skills);
+            }
+        }
+    }, []);
    
     const handleChange=(index,name,value)=>{
         const newEntries=skillsList.slice();

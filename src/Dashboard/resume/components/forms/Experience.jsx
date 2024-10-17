@@ -27,10 +27,18 @@ function Experience() {
 
     useEffect(() => {
         if (Array.isArray(resumeInfo?.experience) && resumeInfo.experience.length > 0) {
-            setExperinceList(resumeInfo.experience);
+            const filteredExperience = resumeInfo.experience.map(exp=>{
+                if(exp.city?.includes("XYZZZ")){
+                    return{...formFeild};
+                }
+                return exp;
+            });
+            setExperinceList(filteredExperience)
         }
     }, []);
 
+
+    
     const handleChange = (index, event) => {
         const newEntries = experinceList.slice();
         const { name, value } = event.target;
@@ -94,7 +102,7 @@ function Experience() {
                             <label className='text-xs'>Position Title</label>
                             <Input name="title" 
                             onChange={(event)=>handleChange(index,event)}
-                            defaultValue={item?.title ? item.title : ""} 
+                            defaultValue={item?.title} 
                             />
                         </div>
                         <div>
